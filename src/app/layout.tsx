@@ -6,6 +6,7 @@ import { poppins, wadik, inter, workSans } from '@/styles/fonts/fonts';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { ReactNode } from 'react';
 
 export const metadata: Metadata = {
   title: 'Echocode',
@@ -14,8 +15,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
+  modal: ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -24,6 +27,7 @@ export default function RootLayout({
       >
         <Header />
         <main>{children}</main>
+        {modal}
         <Footer />
         <SpeedInsights />
       </body>

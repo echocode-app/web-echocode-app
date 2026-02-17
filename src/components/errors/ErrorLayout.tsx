@@ -1,7 +1,4 @@
-import { ReactNode, Suspense } from 'react';
-import Footer from '../layout/Footer';
-import Header from '../layout/Header';
-import ContactUsBtn from '../modals/ContactUsModal/ContactUsBtn';
+import { ReactNode } from 'react';
 
 interface ErrorLayoutProps {
   children: ReactNode;
@@ -10,14 +7,7 @@ interface ErrorLayoutProps {
 const ErrorLayout = ({ children }: ErrorLayoutProps) => {
   return (
     <>
-      <div className="relative">
-        <Header />
-        <main>{children}</main>
-        <Suspense fallback={null}>
-          <ContactUsBtn />
-        </Suspense>
-      </div>
-      <Footer />
+      <main>{children}</main>
     </>
   );
 };

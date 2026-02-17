@@ -1,6 +1,8 @@
 import { Hero } from '@/components/UI/section/Hero';
 import type { Metadata } from 'next';
 
+import ContactsSection from '@/components/sections/home/ContactsSection';
+import CareerSection from '@/components/sections/home/CareerSection';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://echocode.app/'),
@@ -50,8 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Echocode.app',
-    description:
-      'Mobile & web development company. iOS, Android, Flutter and iGaming solutions.',
+    description: 'Mobile & web development company. iOS, Android, Flutter and iGaming solutions.',
     images: ['/images/rabbits/hero/design.png'],
   },
 
@@ -62,8 +63,9 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <section className="py-40">
-      <Hero />
-    </section>
+    <>
+      <CareerSection />
+      <ContactsSection />
+    </>
   );
 }

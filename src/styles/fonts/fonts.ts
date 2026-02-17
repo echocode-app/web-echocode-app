@@ -1,9 +1,15 @@
-import { Poppins, Inter } from 'next/font/google';
+import { Poppins, Inter, Work_Sans } from 'next/font/google';
 import localFont from 'next/font/local';
 
 export const poppins = Poppins({
   variable: '--font-poppins',
   weight: ['400', '600', '700'],
+  subsets: ['latin'],
+});
+
+export const workSans = Work_Sans({
+  variable: '--font-workSans',
+  weight: ['300', '400'],
   subsets: ['latin'],
 });
 

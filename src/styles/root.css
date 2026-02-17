@@ -117,6 +117,10 @@
     font-family: var(--font-inter), sans-serif;
   }
 
+  .font-work {
+    font-family: var(--font-workSans), sans-serif;
+  }
+
   .duration-main {
     transition-duration: var(--duration-main);
   }

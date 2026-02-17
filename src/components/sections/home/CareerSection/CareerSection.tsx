@@ -5,7 +5,7 @@ import CareerList from './CareerList';
 
 const CareerSection = () => {
   return (
-    <section className="py-10 pt-40 md:pt-40 md:py-30 ">
+    <section className="pb-10 md:pb-30">
       <SectionGradientLine height="2" />
       <SectionContainer>
         <div className="mb-3">

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ContactsSection from '@/components/sections/home/ContactsSection';
 import CareerSection from '@/components/sections/home/CareerSection';
 import { Hero } from '@/components/sections/home/Hero';
+import TeamSection from '@/components/sections/home/TeamSection';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://echocode.app/'),
@@ -64,6 +65,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <TeamSection />
       <CareerSection />
       <ContactsSection />
     </>

@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+@import '../styles/root.css';
+
+:root {
+  --main-bg-color: #000000;
+  --main-text-color: #ffffff;
+}
+
+body {
+  font-family: var(--font-poppins);
+
+  background-color: var(--main-bg-color);
+
+  color: var(--main-text-color);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

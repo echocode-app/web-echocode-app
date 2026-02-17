@@ -1,4 +1,6 @@
+import { Hero } from '@/components/UI/section/Hero';
 import type { Metadata } from 'next';
+
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://echocode.app/'),
@@ -61,7 +63,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <section className="py-40">
-      <h1>Home</h1>
+      <Hero />
     </section>
   );
 }

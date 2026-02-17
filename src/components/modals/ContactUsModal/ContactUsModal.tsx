@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { useEffect } from 'react';
+import { type MouseEvent, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
@@ -35,7 +35,7 @@ const ContactUsModal = () => {
     >
       <div className="px-4 md:px-8 max-w-280 w-full">
         <motion.div
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}
           className="relative  w-full flex flex-col mx-auto p-5 pt-10 md:pt-15 md:pb-15 md:px-5 lg:p-15 
            rounded-secondary border bg-[rgba(0,0,0,0.8)] border-white backdrop-blur-[26px]"
           initial={{ y: 20, opacity: 0 }}

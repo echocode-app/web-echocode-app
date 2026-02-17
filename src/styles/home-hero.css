@@ -1,0 +1,77 @@
+:root {
+  --background-image-cta-default: linear-gradient(90deg, #ff0a65 0%, #fd266c 100%);
+  --background-image-cta-hover: linear-gradient(270deg, #fac175 0%, #fe266c 51.35%, #8b5cf5 100%);
+  --shadow-cta: 0px 12px 32px rgba(253, 38, 108, 0.45);
+  --shadow-cta-hover: 0px 2.78348px 25.956px rgba(253, 38, 108, 0.55);
+}
+
+/* ================================
+   Border animation
+================================ */
+
+@keyframes border-flow {
+  0% {
+    background-position: 0% 50%, 0% 50%;
+  }
+  100% {
+    background-position: 0% 50%, 200% 50%;
+  }
+}
+
+/* Animated gradient border */
+.hero-badge-border {
+  background:
+    linear-gradient(#010101, #010101) padding-box,
+    linear-gradient(
+      90deg,
+      #ffffff,
+      rgba(255,255,255,0.4),
+      #ffffff,
+      rgba(255,255,255,0.4),
+      #ffffff
+    ) border-box;
+
+  background-size: 100% 100%, 300% 100%;
+  animation: border-flow 6s linear infinite;
+}
+
+/* ================================
+   Glow
+================================ */
+
+.hero-badge-glow {
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+
+  background: radial-gradient(
+    120% 140% at 50% 20%,
+    rgba(255, 115, 160, 0.6) 0%,
+    rgba(250, 183, 116, 0.5) 40%,
+    rgba(140, 93, 243, 0.4) 70%,
+    rgba(140, 93, 243, 0) 100%
+  );
+
+  filter: blur(12px);
+  opacity: 0.7;
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ================================
+   Gradient text
+================================ */
+
+.hero-badge-text {
+  background: linear-gradient(
+    270deg,
+    #ba9bff 0%,
+    #fac175 51.43%,
+    #ff6798 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

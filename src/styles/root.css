@@ -67,6 +67,7 @@
   --color-gray10: rgba(255, 255, 255, 0.1);
   --color-gray60: rgba(255, 255, 255, 0.6);
   --color-gray75: rgba(255, 255, 255, 0.75);
+  --color-gray-90: rgba(227, 228, 230, 1);
   --color-primary-gray: #d0d0d0;
   --color-base-gray: #1b1819;
   --color-secondary-gray: #36382e;
@@ -87,8 +88,10 @@
   --background-header-gradient: linear-gradient(
     180deg,
     rgba(12, 0, 0, 0.1) 0%,
-    rgba(12, 0, 0, 0) 100%
+    rgba(12, 0, 0, 0) 100% ;
   );
+
+  --background-image-hero-overlay: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%);
 
   /* Shadow */
   --shadow-main: 0 2.688px 9px 0 rgba(253, 38, 108, 0.55);
@@ -135,5 +138,9 @@
 
   .border-gradient {
     background-image: var(--background-image-main-gradient);
+  }
+
+  .bg-hero-overlay {
+    background: var(--background-image-hero-overlay);
   }
 }

@@ -13,7 +13,7 @@ const ContactButton = ({ children, href, onClick, className }: Props) => {
   const baseClasses = clsx(
     `
     group inline-flex items-center rounded-full
-    pl-4 md:pl-6
+    pl-6 h-14
     transition-all duration-main ease-out
     [background:var(--background-image-cta-default)]
     shadow-[var(--shadow-cta)]

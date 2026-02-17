@@ -16,7 +16,7 @@ const ContactCTA = () => {
         <span
           className="
           flex items-center justify-center 
-          w-10 h-10 md:w-14 md:h-14 
+          w-14 h-14 
           rounded-full bg-black
           border-2 border-accent
           md:group-hover:border-accent

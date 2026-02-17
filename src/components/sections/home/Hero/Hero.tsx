@@ -3,7 +3,7 @@ import HeroContent from './HeroContent';
 
 const Hero = () => {
   return (
-    <section className="relative w-full pt-32 overflow-hidden">
+    <section className="relative w-full py-32 overflow-hidden">
       <HeroBackground />
 
       <div className="relative z-10 min-h-[60vh] xl:min-h-155 flex">

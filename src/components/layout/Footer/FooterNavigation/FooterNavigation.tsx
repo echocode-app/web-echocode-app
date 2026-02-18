@@ -22,7 +22,7 @@ const FooterNavigation = () => (
           </h3>
           <ul className="flex flex-col gap-1 w-full sm:w-34 xl:w-51">
             <FooterNavLink link="/">Home</FooterNavLink>
-            <FooterNavLink link="/portfolio">Portfolio</FooterNavLink>
+            {/* <FooterNavLink link="/portfolio">Portfolio</FooterNavLink> */}
           </ul>
         </div>
         <div>
@@ -51,7 +51,6 @@ const FooterNavigation = () => (
         </div>
       </div>
     </div>
-
     <div className="lg:flex lg:flex-col lg:justify-between">
       <EmailLink />
       <SocailLinks />

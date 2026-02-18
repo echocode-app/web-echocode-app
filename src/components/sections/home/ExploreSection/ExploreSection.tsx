@@ -7,7 +7,7 @@ import SectionGradientLine from '@/components/UI/section/SectionGradientLine';
 
 const ExploreSection = () => {
   return (
-    <section className="pb-10 md:pb-30">
+    <section id="partnership" className="pb-10 md:pb-30 scroll-mt-33">
       <SectionGradientLine height="2" />
       <SectionContainer>
         <div className="flex gap-6 justify-between flex-col lg:flex-row mb-10">

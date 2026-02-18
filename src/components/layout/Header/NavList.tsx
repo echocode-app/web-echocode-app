@@ -8,9 +8,6 @@ const NavList = () => {
           <NavLink link={'#products'}>Products</NavLink>
         </li>
         <li>
-          <NavLink link={'#services'}>Services</NavLink>
-        </li>
-        <li>
           <NavLink link={'#partnership'}>Partnership</NavLink>
         </li>
         <li>

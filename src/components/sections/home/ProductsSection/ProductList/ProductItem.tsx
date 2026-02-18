@@ -12,7 +12,14 @@ const ServiceItem = ({ image, desc }: ServiceItemProps) => {
      hover:bg-accent duration-main"
     >
       <div className="relative w-18 h-18 rounded-secondary">
-        <Image src={image} fill alt={desc} className="object-contain rounded-secondary" />
+        <Image
+          src={image}
+          fill
+          alt={desc}
+          sizes="72px"
+          loading="lazy"
+          className="object-contain rounded-secondary"
+        />
       </div>
     </li>
   );

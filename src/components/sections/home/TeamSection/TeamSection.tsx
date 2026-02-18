@@ -5,7 +5,7 @@ import TeamVideo from './TeamVideo';
 
 const TeamSection = () => {
   return (
-    <section className="pb-10 md:pb-30">
+    <section id="team" className="pb-10 md:pb-30 scroll-mt-33">
       <SectionGradientLine height="2" />
       <SectionContainer>
         <div className="flex flex-wrap justify-center xl:justify-between">

@@ -11,7 +11,7 @@ import SectionTitle from '@/components/UI/section/SectionTitle';
 
 const ProductsSection = () => {
   return (
-    <section className="pb-10 md:pb-30">
+    <section id="products" className="pb-10 md:pb-30 scroll-mt-33">
       <SectionGradientLine height="2" />
       <SectionContainer>
         <div className="mb-10">

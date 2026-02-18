@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import ContactFile from './ContactFile';
 import ContactInput from './ContactInput';
 import SubmitButton from './SubmitBtn';
 import YourNeedsInput from './YourNeedInput';
-import { projectSubmissionSchema } from '@/shared/validation';
+import { getProjectAttachmentValidationError, projectSubmissionSchema } from '@/shared/validation';
 
 type FormValues = {
   firstName: string;
@@ -13,7 +14,7 @@ type FormValues = {
   message: string;
 };
 
-type FormErrors = Partial<Record<keyof FormValues | 'form', string>>;
+type FormErrors = Partial<Record<keyof FormValues | 'attachment' | 'form', string>>;
 
 const INITIAL_VALUES: FormValues = {
   firstName: '',
@@ -35,6 +36,7 @@ const getFormspreeEndpoint = () => {
 
 const ContactUsForm = () => {
   const [values, setValues] = useState<FormValues>(INITIAL_VALUES);
+  const [attachment, setAttachment] = useState<File | null>(null);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isPending, setIsPending] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -62,6 +64,7 @@ const ContactUsForm = () => {
       message: normalized.message ? normalized.message : undefined,
     });
 
+    const attachmentError = getProjectAttachmentValidationError(attachment);
     const nextErrors: FormErrors = {};
 
     if (!validationResult.success) {
@@ -71,6 +74,10 @@ const ContactUsForm = () => {
           nextErrors[key] = issue.message;
         }
       });
+    }
+
+    if (attachmentError) {
+      nextErrors.attachment = attachmentError;
     }
 
     if (Object.keys(nextErrors).length > 0) {
@@ -89,6 +96,10 @@ const ContactUsForm = () => {
     formData.append('lastName', normalized.lastName);
     formData.append('email', normalized.email);
     formData.append('message', normalized.message);
+
+    if (attachment) {
+      formData.append('attachment', attachment);
+    }
 
     setIsPending(true);
     try {
@@ -131,6 +142,7 @@ const ContactUsForm = () => {
       }
 
       setValues(INITIAL_VALUES);
+      setAttachment(null);
       setErrors({});
       setIsSuccess(true);
     } catch {
@@ -162,7 +174,7 @@ const ContactUsForm = () => {
           onChange={(value) => onChangeField('lastName', value)}
         />
       </div>
-      <div className="mb-4 md:mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 md:mb-8">
         <ContactInput
           name="email"
           label="Email*"
@@ -172,6 +184,14 @@ const ContactUsForm = () => {
           required
           error={errors.email}
           onChange={(value) => onChangeField('email', value)}
+        />
+        <ContactFile
+          fileName={attachment?.name ?? null}
+          error={errors.attachment}
+          onFileChange={(file) => {
+            setAttachment(file);
+            setErrors((prev) => ({ ...prev, attachment: undefined, form: undefined }));
+          }}
         />
       </div>
       <div className="mb-4 md:mb-8">

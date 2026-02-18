@@ -25,7 +25,7 @@ const FooterNavigation = () => (
             {/* <FooterNavLink link="/portfolio">Portfolio</FooterNavLink> */}
           </ul>
         </div>
-        <div>
+        {/* <div>
           <h3 className="mb-6 font-title text-[10px] text-base-gray opacity-65 tracking-[0.4px] uppercase">
             products
           </h3>
@@ -34,7 +34,7 @@ const FooterNavigation = () => (
             <FooterNavLink link="/portfolio">E-commerce</FooterNavLink>
             <FooterNavLink link="/portfolio">Food & Drinks</FooterNavLink>
           </ul>
-        </div>
+        </div> */}
         <div>
           <h3 className="mb-6 font-title text-[10px] text-base-gray opacity-65 tracking-[0.4px] uppercase">
             Subscribe to

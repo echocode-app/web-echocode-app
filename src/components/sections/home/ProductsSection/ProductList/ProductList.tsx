@@ -11,11 +11,11 @@ const ProductList = ({ list, directionReverse }: ProductListProps) => {
   return (
     <div className="overflow-hidden group mask-[linear-gradient(to_right,transparent_0%,black_6%,black_94%,transparent_100%)]">
       <ul
-        className={`flex w-max ${
+        className={`flex items-center w-max ${
           directionReverse
             ? 'animate-[marquee-reverse_140s_linear_infinite]'
             : 'animate-[marquee_140s_linear_infinite]'
-        } group-hover:[animation-play-state:paused]`}
+        } group-hover:[animation-play-state:paused] h-25.5`}
       >
         {doubled.map(({ image, desc }, i) => (
           <ServiceItem key={i} image={image} desc={desc} />

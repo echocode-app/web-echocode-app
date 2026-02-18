@@ -5,6 +5,7 @@ import { Hero } from '@/components/sections/home/Hero';
 import TeamSection from '@/components/sections/home/TeamSection';
 import ComingSoon from '@/components/sections/Coming-soon';
 import ExploreSection from '@/components/sections/home/ExploreSection';
+import ProductsSection from '@/components/sections/home/ProductsSection';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://echocode.app/'),
@@ -68,6 +69,7 @@ export default function Home() {
     <>
       <ComingSoon />
       <Hero />
+      <ProductsSection />
       <ExploreSection />
       <TeamSection />
       <CareerSection />

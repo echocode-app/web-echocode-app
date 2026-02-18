@@ -1,0 +1,16 @@
+[
+  { "image": "/images/services/revenue.png", "desc": "Revenue", "scale": 1.1 },
+  { "image": "/images/services/pushwoosh.png", "desc": "Pushwoosh", "scale": 1.3 },
+  { "image": "/images/services/openai.png", "desc": "OpenAI" },
+  { "image": "/images/services/onesignal.png", "desc": "OneSignal", "scale": 1.1 },
+  { "image": "/images/services/amplitude.png", "desc": "Amplitude", "scale": 1.1 },
+  { "image": "/images/services/figma.png", "desc": "Figma" },
+  { "image": "/images/services/fluer.png", "desc": "AppsFluer" },
+  { "image": "/images/services/google.png", "desc": "Google" },
+  { "image": "/images/services/firebase.png", "desc": "Firebase", "scale": 1.1 },
+  { "image": "/images/services/render.png", "desc": "Render", "scale": 1.1 },
+  { "image": "/images/services/adapty.png", "desc": "Adapty" },
+  { "image": "/images/services/adjust.png", "desc": "Adjust" },
+  { "image": "/images/services/apphud.png", "desc": "AppHud" },
+  { "image": "/images/services/apple.png", "desc": "Apple" }
+]

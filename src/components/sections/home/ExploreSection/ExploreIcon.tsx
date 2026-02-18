@@ -1,0 +1,15 @@
+const ExploreIcon = () => {
+  return (
+    <div className="flex items-center justify-center">
+      <svg
+        className="w-5 h-5 text-white group-hover:text-accent transition-colors duration-main"
+        viewBox="0 -2 20 20"
+        fill="currentColor"
+      >
+        <path d="M0.574219 17.2617C0.0585938 16.7578 0 16.0195 0.574219 15.4336L11.9648 4.03125L13.7812 2.35547L8.83594 2.53125H4.66406C3.96094 2.53125 3.36328 1.96875 3.36328 1.27734C3.36328 0.597656 3.91406 0 4.69922 0H16.4648C17.2969 0 17.8359 0.5625 17.8359 1.37109V13.1367C17.8359 13.8984 17.25 14.4727 16.5586 14.4727C15.8555 14.4727 15.293 13.875 15.293 13.1719V8.78906L15.4922 3.99609L13.7812 5.84766L2.39062 17.2383C1.81641 17.8008 1.08984 17.7656 0.574219 17.2617Z" />
+      </svg>
+    </div>
+  );
+};
+
+export default ExploreIcon;

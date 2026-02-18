@@ -7,7 +7,7 @@ import SectionGradientLine from '@/components/UI/section/SectionGradientLine';
 const ContactsSection = () => {
   return (
     <section className="pb-10  md:pb-30 ">
-      <SectionGradientLine height="1" />
+      <SectionGradientLine height="2" />
       <SectionContainer>
         <div className="flex flex-col md:flex-row  md:justify-between">
           <div className="mb-10">

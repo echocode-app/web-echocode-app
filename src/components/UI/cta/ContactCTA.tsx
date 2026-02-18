@@ -22,7 +22,7 @@ const ContactCTA = () => {
           md:group-hover:border-accent
         "
         >
-          <Image src="/UI/contact.svg" width={26} height={22} alt="Contact" />
+          <Image src="/UI/contact.svg" width={26} height={22} alt="Contact" className="w-6.5 h-5.5" />
         </span>
       </div>
     </ContactButton>

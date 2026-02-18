@@ -1,9 +1,12 @@
 import HeroBackground from './HeroBackground';
 import HeroContent from './HeroContent';
+import { preload } from 'react-dom';
 
 const Hero = () => {
+  preload('/videos/hero-bg.mp4', { as: 'video', type: 'video/mp4' });
+
   return (
-    <section className="relative w-full py-32 overflow-hidden">
+    <section className="relative w-full overflow-hidden">
       <HeroBackground />
 
       <div className="relative z-10 min-h-[60vh] xl:min-h-155 flex">

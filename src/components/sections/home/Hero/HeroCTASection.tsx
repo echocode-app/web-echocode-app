@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const HeroCTASection = () => {
   return (
-    <div className="mt-10 flex justify-center">
+    <div className="my-10 flex justify-center">
       <div className="relative inline-flex">
 
         {/* Background image */}

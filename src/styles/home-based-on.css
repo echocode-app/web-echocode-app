@@ -1,0 +1,116 @@
+.based-card-hover {
+  position: relative;
+  border: 2px solid rgba(52, 52, 52, 1);
+  border-radius: var(--radius-secondary);
+  transition: var(--duration-main);
+  background-clip: padding-box;
+}
+
+.based-card-hover::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    270deg,
+    #fac175 0%,
+    #fe266c 51.35%,
+    #8b5cf5 100%
+  );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  opacity: 0;
+  transition: var(--duration-main);
+  pointer-events: none;
+}
+
+.based-card-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    270deg,
+    rgba(250, 193, 117, 1) 0%,
+    rgba(254, 38, 108, 1) 51.35%,
+    rgba(139, 92, 245, 1) 100%
+  );
+  opacity: 0;
+  transition: var(--duration-main);
+  pointer-events: none;
+}
+
+.based-card-hover:hover {
+  border-color: transparent;
+}
+
+.based-card-hover:hover::after {
+  opacity: 1;
+}
+
+.based-card-hover:hover::before {
+  opacity: 0.08;
+}
+
+.based-card-title {
+  opacity: 0.86;
+  transform: translate3d(0, 8px, 0);
+  transition:
+    transform 560ms ease-out,
+    opacity 560ms ease-out,
+    color 560ms ease-out;
+  will-change: transform, opacity;
+}
+
+.based-card-hover:hover .based-card-title {
+  color: var(--color-accent);
+  opacity: 1;
+  transform: translate3d(0, -10px, 0);
+}
+
+.based-card-description {
+  opacity: 0;
+  transform: translate3d(0, 10px, 0);
+  transition:
+    max-height 620ms ease-out,
+    opacity 560ms ease-out 90ms,
+    transform 560ms ease-out 90ms;
+  will-change: max-height, transform, opacity;
+}
+
+.based-card-hover:hover .based-card-description {
+  max-height: 10rem;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (max-width: 767px) {
+  .based-card-title {
+    transform: translate3d(0, 5px, 0);
+  }
+
+  .based-card-hover:hover .based-card-title {
+    transform: translate3d(0, -6px, 0);
+  }
+
+  .based-card-hover:hover .based-card-description {
+    max-height: 8.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .based-card-title,
+  .based-card-description {
+    transition: none;
+    transform: none;
+  }
+}

@@ -2,17 +2,22 @@
 
 import Link from 'next/link';
 
-import { type MouseEvent, useEffect } from 'react';
+import { type MouseEvent, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
 import ContactUsForm from './ContactUsForm';
 import CloseBtn from './ContactUsForm/CloseBtn';
 import SectionTitle from '@/components/UI/section/SectionTitle';
+import { useEscapeKey } from '@/hooks/useEscapeKey';
 
 const ContactUsModal = () => {
   const router = useRouter();
-  const closeModal = () => router.back();
+  const closeModal = useCallback(() => {
+    router.back();
+  }, [router]);
+
+  useEscapeKey(closeModal);
 
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;

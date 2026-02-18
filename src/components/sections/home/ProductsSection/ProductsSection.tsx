@@ -17,11 +17,11 @@ const ProductsSection = () => {
         <div className="mb-10">
           <SectionTitle>Our products</SectionTitle>
         </div>
-        <div className="flex flex-col gap-5">
-          <ProductList list={products1} />
-          <ProductList list={products2} directionReverse={true} />
-          <ProductList list={products3} />
-          <ProductList list={products4} directionReverse={true} />
+        <div className="flex flex-col md:gap-5">
+          <ProductList list={products1} directionReverse={true} />
+          <ProductList list={products2} />
+          <ProductList list={products3} directionReverse={true} />
+          <ProductList list={products4} />
         </div>
       </SectionContainer>
     </section>

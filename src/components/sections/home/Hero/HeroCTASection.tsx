@@ -8,7 +8,7 @@ const HeroCTASection = () => {
 
         {/* Background image */}
         <Image
-          src="/UI/backgraund/circles-bg.png"
+          src="/UI/backgrounds/circles-bg.png"
           alt=""
           width={400}
           height={168}

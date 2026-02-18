@@ -14,7 +14,7 @@ const ContactButton = ({ children, href, onClick, className }: Props) => {
     `
     group inline-flex items-center rounded-full
     pl-6 h-14
-    transition-all duration-main ease-out
+    transition-all duration-main
     [background:var(--background-image-cta-default)]
     shadow-[var(--shadow-cta)]
     md:hover:scale-[1.04]

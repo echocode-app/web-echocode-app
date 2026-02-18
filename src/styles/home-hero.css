@@ -75,3 +75,13 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Full width background gradient */
+.coming-soon-gradient {
+  background: linear-gradient(
+    270deg,
+    #8B5CF5 0%,
+    #FAC175 32.69%,
+    #FE266C 100%
+  );
+}

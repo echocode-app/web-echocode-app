@@ -29,7 +29,7 @@ const ContactUsBtn = () => {
     "
       >
         <div className="relative w-6.5 h-5.5">
-          <Image src="/UI/contact.svg" alt="Contact Us" fill />
+          <Image src="/UI/contact.svg" alt="Contact Us" width={26} height={22} className="w-6.5 h-5.5" />
         </div>
       </div>
     </Link>

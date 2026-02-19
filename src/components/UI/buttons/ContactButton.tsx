@@ -12,14 +12,18 @@ interface Props {
 const ContactButton = ({ children, href, onClick, className }: Props) => {
   const baseClasses = clsx(
     `
-    group inline-flex items-center rounded-full
-    pl-6 h-14
-    transition-all duration-main
+    group relative z-0 inline-flex items-center rounded-full
+    pl-6 h-14 overflow-hidden
     [background:var(--background-image-cta-default)]
     shadow-[var(--shadow-cta)]
-    md:hover:scale-[1.04]
-    md:hover:[background:var(--background-image-cta-hover)]
-    md:hover:shadow-[var(--shadow-cta-hover)]
+    transition-[box-shadow,transform] duration-500 ease-out
+    before:absolute before:inset-0
+    before:[background:var(--background-image-cta-hover)]
+    before:opacity-0 before:transition-opacity before:duration-500 before:ease-out
+    before:z-0
+    hover:before:opacity-100 hover:shadow-[var(--shadow-cta-hover)]
+    focus-visible:before:opacity-100 focus-visible:shadow-[var(--shadow-cta-hover)]
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70
     `,
     className
   );

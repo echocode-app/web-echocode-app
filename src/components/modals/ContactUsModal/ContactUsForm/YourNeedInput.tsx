@@ -1,10 +1,12 @@
 type YourNeedsInputProps = {
   value: string;
+  disabled?: boolean;
   error?: string;
   onChange: (value: string) => void;
+  onBlur?: () => void;
 };
 
-const YourNeedsInput = ({ value, error, onChange }: YourNeedsInputProps) => {
+const YourNeedsInput = ({ value, disabled = false, error, onChange, onBlur }: YourNeedsInputProps) => {
   return (
     <div className="relative">
       <label
@@ -18,13 +20,22 @@ const YourNeedsInput = ({ value, error, onChange }: YourNeedsInputProps) => {
         id="needs"
         name="needs"
         value={value}
+        disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
+        onBlur={onBlur}
+        aria-describedby="needs-error"
         placeholder="e.g. Mobile app design for a fintech startup"
         className="block pt-6.5 pb-2 pl-4 pr-6 border rounded-secondary leading-3.5 w-full min-h-14 resize-y
          hover:border-accent focus:border-accent duration-main transition-colors
-       outline-0 text-main-xs font-main text-white placeholder:text-primary-gray  border-white"
+       outline-0 text-[14px] font-main text-gray-90 placeholder:text-primary-gray border-white
+       disabled:opacity-70 disabled:cursor-not-allowed"
       />
-      {error ? <p className="mt-1 text-main-xs text-[#ff8d8d]">{error}</p> : null}
+      <p
+        id="needs-error"
+        className={`min-h-4 text-main-xs leading-4 transition-opacity ${error ? 'text-[#ff8d8d] opacity-100' : 'opacity-0'}`}
+      >
+        {error || ' '}
+      </p>
     </div>
   );
 };

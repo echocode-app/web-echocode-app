@@ -7,6 +7,7 @@ import ComingSoon from '@/components/sections/Coming-soon';
 import { BasedOnSection } from '@/components/sections/home/BasedOn';
 import ExploreSection from '@/components/sections/home/ExploreSection';
 import ProductsSection from '@/components/sections/home/ProductsSection';
+import SectionFirstReveal from '@/components/UI/section/SectionFirstReveal';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://echocode.app/'),
@@ -70,12 +71,24 @@ export default function Home() {
     <>
       <ComingSoon />
       <Hero />
-      <BasedOnSection/>
-      <ProductsSection />
-      <ExploreSection />
-      <TeamSection />
-      <CareerSection />
-      <ContactsSection />
+      <SectionFirstReveal>
+        <BasedOnSection />
+      </SectionFirstReveal>
+      <SectionFirstReveal>
+        <ProductsSection />
+      </SectionFirstReveal>
+      <SectionFirstReveal>
+        <ExploreSection />
+      </SectionFirstReveal>
+      <SectionFirstReveal>
+        <TeamSection />
+      </SectionFirstReveal>
+      <SectionFirstReveal>
+        <CareerSection />
+      </SectionFirstReveal>
+      <SectionFirstReveal>
+        <ContactsSection />
+      </SectionFirstReveal>
     </>
   );
 }

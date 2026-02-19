@@ -1,10 +1,15 @@
+'use client';
+
 import Link from 'next/link';
 import ExploreIcon from './ExploreIcon';
+import { useContactHref } from '@/hooks/useContactHref';
 
 const ExploreLink = () => {
+  const contactHref = useContactHref();
+
   return (
     <Link
-      href={'/contact'}
+      href={contactHref}
       scroll={false}
       className="group relative flex items-center justify-between mx-auto lg:mx-0 w-59.25 h-13.5 px-6 py-4
                  font-title text-title-sm text-white rounded-base overflow-hidden duration-main shadow-main "

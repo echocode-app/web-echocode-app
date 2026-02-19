@@ -2,207 +2,27 @@
 
 import Link from 'next/link';
 
-import { type MouseEvent, useCallback, useEffect, useState } from 'react';
+import { type MouseEvent } from 'react';
 import { motion } from 'framer-motion';
-import { usePathname, useRouter } from 'next/navigation';
 
 import ContactUsForm from './ContactUsForm';
 import CloseBtn from './ContactUsForm/CloseBtn';
 import SectionTitle from '@/components/UI/section/SectionTitle';
 import { useEscapeKey } from '@/hooks/useEscapeKey';
-
-const CONTACT_PATH = '/contact';
-const CONTACT_SUCCESS_PATH = '/contact/success';
-const CONTACT_SUCCESS_FLAG = 'contact_success_allowed';
-const CONTACT_SCROLL_Y_KEY = 'contact_modal_scroll_y';
-const CONTACT_RETURN_PATH_KEY = 'contact_modal_return_path';
-let bodyLockCount = 0;
-let bodyUnlockTimer: number | null = null;
-let bodyOriginalOverflow: string | null = null;
-
-const lockBodyScroll = () => {
-  if (bodyUnlockTimer) {
-    window.clearTimeout(bodyUnlockTimer);
-    bodyUnlockTimer = null;
-  }
-
-  if (bodyLockCount === 0) {
-    if (bodyOriginalOverflow === null) {
-      bodyOriginalOverflow = document.body.style.overflow || window.getComputedStyle(document.body).overflow;
-    }
-    document.body.style.overflow = 'hidden';
-  }
-
-  bodyLockCount += 1;
-};
-
-const unlockBodyScroll = () => {
-  bodyLockCount = Math.max(0, bodyLockCount - 1);
-
-  if (bodyLockCount !== 0) {
-    return;
-  }
-
-  bodyUnlockTimer = window.setTimeout(() => {
-    if (bodyLockCount === 0) {
-      document.body.style.overflow = bodyOriginalOverflow ?? '';
-      bodyOriginalOverflow = null;
-    }
-    bodyUnlockTimer = null;
-  }, 120);
-};
-
-const forceUnlockBodyScroll = () => {
-  if (bodyUnlockTimer) {
-    window.clearTimeout(bodyUnlockTimer);
-    bodyUnlockTimer = null;
-  }
-
-  bodyLockCount = 0;
-  document.body.style.overflow = bodyOriginalOverflow ?? '';
-  bodyOriginalOverflow = null;
-};
+import { useContactModalLifecycle } from './useContactModalLifecycle';
 
 const ContactUsModal = () => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const [shouldAnimateEnter] = useState(() => {
-    if (typeof window === 'undefined') {
-      return true;
-    }
-
-    const isSuccessTransition =
-      window.location.pathname === CONTACT_SUCCESS_PATH &&
-      window.sessionStorage.getItem(CONTACT_SUCCESS_FLAG) === '1';
-
-    return !isSuccessTransition;
-  });
-  const [isClosing, setIsClosing] = useState(false);
-
-  const isSuccessRoute = pathname === CONTACT_SUCCESS_PATH;
-  const isSuccessState = isSuccessRoute;
-  const shouldAnimateClosing = isClosing && isSuccessState;
-  const isModalRoute = pathname === CONTACT_PATH || pathname === CONTACT_SUCCESS_PATH;
-
-  const clearModalSessionState = useCallback(() => {
-    window.sessionStorage.removeItem(CONTACT_SUCCESS_FLAG);
-    window.sessionStorage.removeItem(CONTACT_SCROLL_Y_KEY);
-    window.sessionStorage.removeItem(CONTACT_RETURN_PATH_KEY);
-  }, []);
-
-  const closeToHomeWithScrollRestore = useCallback(() => {
-    const savedScrollY = Number(window.sessionStorage.getItem(CONTACT_SCROLL_Y_KEY) || '0');
-    const rawReturnPath = window.sessionStorage.getItem(CONTACT_RETURN_PATH_KEY) || '/';
-    const returnPath = rawReturnPath.startsWith('/contact') ? '/' : rawReturnPath;
-
-    router.replace(returnPath, { scroll: false });
-
-    window.setTimeout(() => {
-      clearModalSessionState();
-      forceUnlockBodyScroll();
-      window.scrollTo({ top: Number.isFinite(savedScrollY) ? savedScrollY : 0, behavior: 'auto' });
-    }, 80);
-  }, [clearModalSessionState, router]);
-
-  const closeSuccessFlowSmoothly = useCallback(() => {
-    if (isClosing) {
-      return;
-    }
-
-    setIsClosing(true);
-    window.setTimeout(() => {
-      closeToHomeWithScrollRestore();
-    }, 280);
-  }, [closeToHomeWithScrollRestore, isClosing]);
-
-  const closeByButton = useCallback(() => {
-    if (isSuccessState) {
-      closeSuccessFlowSmoothly();
-      return;
-    }
-
-    clearModalSessionState();
-    router.back();
-  }, [clearModalSessionState, closeSuccessFlowSmoothly, isSuccessState, router]);
-
-  const closeByBackdropOrEsc = useCallback(() => {
-    if (isSuccessState) {
-      return;
-    }
-
-    clearModalSessionState();
-    router.back();
-  }, [clearModalSessionState, isSuccessState, router]);
+  const {
+    isModalRoute,
+    isSuccessRoute,
+    shouldAnimateEnter,
+    shouldAnimateClosing,
+    closeByButton,
+    closeByBackdropOrEsc,
+    onSuccessSubmit,
+  } = useContactModalLifecycle();
 
   useEscapeKey(closeByBackdropOrEsc);
-
-  useEffect(() => {
-    if (!isModalRoute) {
-      forceUnlockBodyScroll();
-      return;
-    }
-
-    lockBodyScroll();
-
-    if (!window.sessionStorage.getItem(CONTACT_SCROLL_Y_KEY)) {
-      window.sessionStorage.setItem(CONTACT_SCROLL_Y_KEY, String(window.scrollY));
-    }
-
-    if (!window.sessionStorage.getItem(CONTACT_RETURN_PATH_KEY)) {
-      let returnPath = '/';
-
-      const fromParam = new URL(window.location.href).searchParams.get('from');
-      if (fromParam && fromParam.startsWith('/') && !fromParam.startsWith('/contact')) {
-        returnPath = fromParam;
-      } else if (document.referrer) {
-        try {
-          const ref = new URL(document.referrer);
-          if (ref.origin === window.location.origin && !ref.pathname.startsWith('/contact')) {
-            returnPath = `${ref.pathname}${ref.search}`;
-          }
-        } catch {
-          returnPath = '/';
-        }
-      }
-
-      window.sessionStorage.setItem(CONTACT_RETURN_PATH_KEY, returnPath);
-    }
-
-    return () => {
-      unlockBodyScroll();
-    };
-  }, [isModalRoute]);
-
-  useEffect(() => {
-    if (!isSuccessRoute || isClosing) {
-      return;
-    }
-
-    const isAllowed = window.sessionStorage.getItem(CONTACT_SUCCESS_FLAG) === '1';
-    if (!isAllowed) {
-      router.replace(CONTACT_PATH, { scroll: false });
-    }
-  }, [isClosing, isSuccessRoute, router]);
-
-  useEffect(() => {
-    if (!isSuccessState) {
-      return;
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      closeSuccessFlowSmoothly();
-    }, 3000);
-
-    return () => {
-      window.clearTimeout(timeoutId);
-    };
-  }, [closeSuccessFlowSmoothly, isSuccessState]);
-
-  const handleSuccessSubmit = useCallback(() => {
-    setIsClosing(false);
-    window.sessionStorage.setItem(CONTACT_SUCCESS_FLAG, '1');
-    router.replace(CONTACT_SUCCESS_PATH, { scroll: false });
-  }, [router]);
 
   if (!isModalRoute) {
     return null;
@@ -243,7 +63,7 @@ const ContactUsModal = () => {
               hello@echocode.com
             </Link>
           </div>
-          <ContactUsForm isSuccessRoute={isSuccessState} onSuccessSubmit={handleSuccessSubmit} />
+          <ContactUsForm isSuccessRoute={isSuccessRoute} onSuccessSubmit={onSuccessSubmit} />
         </motion.div>
       </div>
     </motion.div>

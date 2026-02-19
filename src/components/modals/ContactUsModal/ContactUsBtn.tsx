@@ -1,10 +1,15 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useContactHref } from '@/hooks/useContactHref';
 
 const ContactUsBtn = () => {
+  const contactHref = useContactHref();
+
   return (
     <Link
-      href="/contact"
+      href={contactHref}
       scroll={false}
       className="
   w-60.5 shadow-main 

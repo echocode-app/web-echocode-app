@@ -2,8 +2,11 @@ import SectionContainer from '@/components/UI/section/SectionContainer';
 import SectionGradientLine from '@/components/UI/section/SectionGradientLine';
 import TeamList from './TeamList';
 import TeamVideo from './TeamVideo';
+import { preload } from 'react-dom';
 
 const TeamSection = () => {
+  preload('/videos/video-team.mp4', { as: 'video', type: 'video/mp4', fetchPriority: 'low' });
+
   return (
     <section id="team" className="pb-10 md:pb-30 scroll-mt-33">
       <SectionGradientLine height="2" />

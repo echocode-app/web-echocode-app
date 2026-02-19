@@ -30,6 +30,7 @@ export default function ContactInput({
       </label>
       {!value && (
         <span
+          aria-hidden="true"
           className="
             pointer-events-none h-11.5
             absolute p-4 flex items-center text-white text-[10px] leading-none font-title
@@ -50,6 +51,7 @@ export default function ContactInput({
         onChange={(e) => onChange(e.target.value)}
         onBlur={onBlur}
         aria-describedby={`${name}-error`}
+        aria-invalid={error ? true : undefined}
         className="
           w-full h-11.5
           p-4

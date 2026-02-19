@@ -24,6 +24,7 @@ const YourNeedsInput = ({ value, disabled = false, error, onChange, onBlur }: Yo
         onChange={(e) => onChange(e.target.value)}
         onBlur={onBlur}
         aria-describedby="needs-error"
+        aria-invalid={error ? true : undefined}
         placeholder="e.g. Mobile app design for a fintech startup"
         className="block pt-6.5 pb-2 pl-4 pr-6 border rounded-secondary leading-3.5 w-full min-h-14 resize-y
          hover:border-accent focus:border-accent duration-main transition-colors

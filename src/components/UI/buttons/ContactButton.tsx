@@ -1,6 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import clsx from 'clsx';
+import { useContactHref } from '@/hooks/useContactHref';
 
 interface Props {
   children: ReactNode;
@@ -10,6 +13,7 @@ interface Props {
 }
 
 const ContactButton = ({ children, href, onClick, className }: Props) => {
+  const contactHref = useContactHref();
   const baseClasses = clsx(
     `
     group relative z-0 inline-flex items-center rounded-full
@@ -29,8 +33,10 @@ const ContactButton = ({ children, href, onClick, className }: Props) => {
     className
   );
   if (href) {
+    const resolvedHref = href.startsWith('/contact') ? contactHref : href;
+
     return (
-      <Link href={href} scroll={false} className={baseClasses}>
+      <Link href={resolvedHref} scroll={false} className={baseClasses}>
         {children}
       </Link>
     );

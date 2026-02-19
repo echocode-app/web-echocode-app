@@ -20,14 +20,15 @@ const ContactButton = ({ children, href, onClick, className }: Props) => {
     pl-6 h-14 overflow-hidden
     [background:var(--background-image-cta-default)]
     shadow-[var(--shadow-cta)]
-    transform-gpu will-change-transform
-    transition-[box-shadow,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
+    transform-gpu origin-center will-change-transform [backface-visibility:hidden]
+    [transform:translateZ(0)_scale(1)]
+    [transition:transform_620ms_cubic-bezier(0.16,1,0.3,1),box-shadow_620ms_cubic-bezier(0.16,1,0.3,1)]
     before:absolute before:inset-0
     before:[background:var(--background-image-cta-hover)]
-    before:opacity-0 before:transition-opacity before:duration-700 before:ease-[cubic-bezier(0.22,1,0.36,1)]
+    before:opacity-0 before:transition-opacity before:duration-800 before:ease-[cubic-bezier(0.4,0,0.2,1)]
     before:z-0
-    hover:before:opacity-100 hover:shadow-[var(--shadow-cta-hover)] hover:scale-[1.015]
-    focus-visible:before:opacity-100 focus-visible:shadow-[var(--shadow-cta-hover)] focus-visible:scale-[1.015]
+    hover:before:opacity-100 hover:shadow-[var(--shadow-cta-hover)] hover:[transform:translateZ(0)_scale(1.01)]
+    focus-visible:before:opacity-100 focus-visible:shadow-[var(--shadow-cta-hover)] focus-visible:[transform:translateZ(0)_scale(1.01)]
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70
     `,
     className

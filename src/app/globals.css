@@ -21,11 +21,11 @@ body {
 }
 
 @keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
+  0% {
     transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 

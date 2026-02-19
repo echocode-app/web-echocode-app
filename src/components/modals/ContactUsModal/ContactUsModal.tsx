@@ -16,6 +16,52 @@ const CONTACT_SUCCESS_PATH = '/contact/success';
 const CONTACT_SUCCESS_FLAG = 'contact_success_allowed';
 const CONTACT_SCROLL_Y_KEY = 'contact_modal_scroll_y';
 const CONTACT_RETURN_PATH_KEY = 'contact_modal_return_path';
+let bodyLockCount = 0;
+let bodyUnlockTimer: number | null = null;
+let bodyOriginalOverflow: string | null = null;
+
+const lockBodyScroll = () => {
+  if (bodyUnlockTimer) {
+    window.clearTimeout(bodyUnlockTimer);
+    bodyUnlockTimer = null;
+  }
+
+  if (bodyLockCount === 0) {
+    if (bodyOriginalOverflow === null) {
+      bodyOriginalOverflow = document.body.style.overflow || window.getComputedStyle(document.body).overflow;
+    }
+    document.body.style.overflow = 'hidden';
+  }
+
+  bodyLockCount += 1;
+};
+
+const unlockBodyScroll = () => {
+  bodyLockCount = Math.max(0, bodyLockCount - 1);
+
+  if (bodyLockCount !== 0) {
+    return;
+  }
+
+  bodyUnlockTimer = window.setTimeout(() => {
+    if (bodyLockCount === 0) {
+      document.body.style.overflow = bodyOriginalOverflow ?? '';
+      bodyOriginalOverflow = null;
+    }
+    bodyUnlockTimer = null;
+  }, 120);
+};
+
+const forceUnlockBodyScroll = () => {
+  if (bodyUnlockTimer) {
+    window.clearTimeout(bodyUnlockTimer);
+    bodyUnlockTimer = null;
+  }
+
+  bodyLockCount = 0;
+  document.body.style.overflow = bodyOriginalOverflow ?? '';
+  bodyOriginalOverflow = null;
+};
 
 const ContactUsModal = () => {
   const router = useRouter();
@@ -31,10 +77,12 @@ const ContactUsModal = () => {
 
     return !isSuccessTransition;
   });
+  const [isClosing, setIsClosing] = useState(false);
 
-  const isContactRoute = pathname === CONTACT_PATH;
   const isSuccessRoute = pathname === CONTACT_SUCCESS_PATH;
-  const isModalRoute = isContactRoute || isSuccessRoute;
+  const isSuccessState = isSuccessRoute;
+  const shouldAnimateClosing = isClosing && isSuccessState;
+  const isModalRoute = pathname === CONTACT_PATH || pathname === CONTACT_SUCCESS_PATH;
 
   const clearModalSessionState = useCallback(() => {
     window.sessionStorage.removeItem(CONTACT_SUCCESS_FLAG);
@@ -44,44 +92,57 @@ const ContactUsModal = () => {
 
   const closeToHomeWithScrollRestore = useCallback(() => {
     const savedScrollY = Number(window.sessionStorage.getItem(CONTACT_SCROLL_Y_KEY) || '0');
-    const returnPath = window.sessionStorage.getItem(CONTACT_RETURN_PATH_KEY) || '/';
+    const rawReturnPath = window.sessionStorage.getItem(CONTACT_RETURN_PATH_KEY) || '/';
+    const returnPath = rawReturnPath.startsWith('/contact') ? '/' : rawReturnPath;
 
     router.replace(returnPath, { scroll: false });
 
     window.setTimeout(() => {
       clearModalSessionState();
+      forceUnlockBodyScroll();
       window.scrollTo({ top: Number.isFinite(savedScrollY) ? savedScrollY : 0, behavior: 'auto' });
     }, 80);
   }, [clearModalSessionState, router]);
 
-  const closeByButton = useCallback(() => {
-    if (isSuccessRoute) {
+  const closeSuccessFlowSmoothly = useCallback(() => {
+    if (isClosing) {
+      return;
+    }
+
+    setIsClosing(true);
+    window.setTimeout(() => {
       closeToHomeWithScrollRestore();
+    }, 280);
+  }, [closeToHomeWithScrollRestore, isClosing]);
+
+  const closeByButton = useCallback(() => {
+    if (isSuccessState) {
+      closeSuccessFlowSmoothly();
       return;
     }
 
     clearModalSessionState();
     router.back();
-  }, [clearModalSessionState, closeToHomeWithScrollRestore, isSuccessRoute, router]);
+  }, [clearModalSessionState, closeSuccessFlowSmoothly, isSuccessState, router]);
 
   const closeByBackdropOrEsc = useCallback(() => {
-    if (isSuccessRoute) {
+    if (isSuccessState) {
       return;
     }
 
     clearModalSessionState();
     router.back();
-  }, [clearModalSessionState, isSuccessRoute, router]);
+  }, [clearModalSessionState, isSuccessState, router]);
 
   useEscapeKey(closeByBackdropOrEsc);
 
   useEffect(() => {
     if (!isModalRoute) {
+      forceUnlockBodyScroll();
       return;
     }
 
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll();
 
     if (!window.sessionStorage.getItem(CONTACT_SCROLL_Y_KEY)) {
       window.sessionStorage.setItem(CONTACT_SCROLL_Y_KEY, String(window.scrollY));
@@ -108,31 +169,37 @@ const ContactUsModal = () => {
     }
 
     return () => {
-      document.body.style.overflow = originalStyle;
+      unlockBodyScroll();
     };
   }, [isModalRoute]);
 
   useEffect(() => {
-    if (!isSuccessRoute) {
+    if (!isSuccessRoute || isClosing) {
       return;
     }
 
     const isAllowed = window.sessionStorage.getItem(CONTACT_SUCCESS_FLAG) === '1';
     if (!isAllowed) {
       router.replace(CONTACT_PATH, { scroll: false });
+    }
+  }, [isClosing, isSuccessRoute, router]);
+
+  useEffect(() => {
+    if (!isSuccessState) {
       return;
     }
 
     const timeoutId = window.setTimeout(() => {
-      closeToHomeWithScrollRestore();
+      closeSuccessFlowSmoothly();
     }, 3000);
 
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [closeToHomeWithScrollRestore, isSuccessRoute, router]);
+  }, [closeSuccessFlowSmoothly, isSuccessState]);
 
   const handleSuccessSubmit = useCallback(() => {
+    setIsClosing(false);
     window.sessionStorage.setItem(CONTACT_SUCCESS_FLAG, '1');
     router.replace(CONTACT_SUCCESS_PATH, { scroll: false });
   }, [router]);
@@ -146,10 +213,11 @@ const ContactUsModal = () => {
       onClick={closeByBackdropOrEsc}
       className="fixed inset-0 z-200 flex items-center justify-center
          bg-black/50 backdrop-blur-[2px]"
+      style={{ pointerEvents: shouldAnimateClosing ? 'none' : 'auto' }}
       initial={shouldAnimateEnter ? { opacity: 0 } : false}
-      animate={{ opacity: 1 }}
+      animate={shouldAnimateClosing ? { opacity: 0 } : { opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.28, ease: 'easeOut' }}
     >
       <div className="px-4 md:px-8 max-w-280 w-full">
         <motion.div
@@ -157,9 +225,9 @@ const ContactUsModal = () => {
           className="relative  w-full flex flex-col mx-auto p-5 pt-10 md:pt-15 md:pb-15 md:px-5 lg:p-15
            rounded-secondary border bg-[rgba(0,0,0,0.8)] border-white backdrop-blur-[26px]"
           initial={shouldAnimateEnter ? { y: 20, opacity: 0 } : false}
-          animate={{ y: 0, opacity: 1 }}
+          animate={shouldAnimateClosing ? { y: 12, opacity: 0 } : { y: 0, opacity: 1 }}
           exit={{ y: 20, opacity: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.28, ease: 'easeOut' }}
         >
           <div className="absolute top-1 right-2 md:top-4 md:right-4">
             <CloseBtn onClose={closeByButton} />
@@ -175,7 +243,7 @@ const ContactUsModal = () => {
               hello@echocode.com
             </Link>
           </div>
-          <ContactUsForm isSuccessRoute={isSuccessRoute} onSuccessSubmit={handleSuccessSubmit} />
+          <ContactUsForm isSuccessRoute={isSuccessState} onSuccessSubmit={handleSuccessSubmit} />
         </motion.div>
       </div>
     </motion.div>

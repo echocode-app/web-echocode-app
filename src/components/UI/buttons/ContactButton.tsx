@@ -16,13 +16,14 @@ const ContactButton = ({ children, href, onClick, className }: Props) => {
     pl-6 h-14 overflow-hidden
     [background:var(--background-image-cta-default)]
     shadow-[var(--shadow-cta)]
-    transition-[box-shadow,transform] duration-500 ease-out
+    transform-gpu will-change-transform
+    transition-[box-shadow,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
     before:absolute before:inset-0
     before:[background:var(--background-image-cta-hover)]
-    before:opacity-0 before:transition-opacity before:duration-500 before:ease-out
+    before:opacity-0 before:transition-opacity before:duration-700 before:ease-[cubic-bezier(0.22,1,0.36,1)]
     before:z-0
-    hover:before:opacity-100 hover:shadow-[var(--shadow-cta-hover)]
-    focus-visible:before:opacity-100 focus-visible:shadow-[var(--shadow-cta-hover)]
+    hover:before:opacity-100 hover:shadow-[var(--shadow-cta-hover)] hover:scale-[1.015]
+    focus-visible:before:opacity-100 focus-visible:shadow-[var(--shadow-cta-hover)] focus-visible:scale-[1.015]
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70
     `,
     className

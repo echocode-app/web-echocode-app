@@ -1,7 +1,5 @@
-import ContactUsModal from '@/components/modals/ContactUsModal';
-
-const ContactSuccessModal = () => {
-  return <ContactUsModal />;
+const ContactSuccessModalPage = () => {
+  return null;
 };
 
-export default ContactSuccessModal;
+export default ContactSuccessModalPage;

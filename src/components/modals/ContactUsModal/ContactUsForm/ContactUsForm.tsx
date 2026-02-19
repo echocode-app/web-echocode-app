@@ -188,7 +188,7 @@ const ContactUsForm = ({ isSuccessRoute = false, onSuccessSubmit }: ContactUsFor
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="flex flex-col md:flex-row gap-3 md:gap-4 mb-2 sm:mb-3 md:mb-4">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-4 mb-1 sm:mb-2 md:mb-3">
         <ContactInput
           name="firstName"
           label="First name*"
@@ -212,7 +212,7 @@ const ContactUsForm = ({ isSuccessRoute = false, onSuccessSubmit }: ContactUsFor
           onChange={(value) => onChangeField('lastName', value)}
         />
       </div>
-      <div className="mb-2 sm:mb-3 md:mb-4">
+      <div className="mb-1 sm:mb-2 md:mb-3">
         <ContactInput
           name="email"
           label="Email*"
@@ -226,7 +226,7 @@ const ContactUsForm = ({ isSuccessRoute = false, onSuccessSubmit }: ContactUsFor
           onChange={(value) => onChangeField('email', value)}
         />
       </div>
-      <div className="mb-2 sm:mb-3 md:mb-4">
+      <div className="mb-1 sm:mb-2 md:mb-3">
         <YourNeedsInput
           value={values.message}
           disabled={isFormLocked}

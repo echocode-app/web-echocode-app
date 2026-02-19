@@ -63,7 +63,7 @@ export default function ContactInput({
       />
       <p
         id={`${name}-error`}
-        className={`min-h-4 text-main-xs leading-4 transition-opacity ${error ? 'text-[#ff8d8d] opacity-100' : 'opacity-0'}`}
+        className={`min-h-4 mt-1 md:mt-2 ml-2 lg:ml-4 text-main-xs leading-4 transition-opacity ${error ? 'text-[#d96e6e] opacity-100' : 'opacity-0'}`}
       >
         {error || ' '}
       </p>

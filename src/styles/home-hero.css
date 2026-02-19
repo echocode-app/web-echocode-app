@@ -1,8 +1,8 @@
 :root {
   --background-image-cta-default: linear-gradient(90deg, #ff0a65 0%, #fd266c 100%);
   --background-image-cta-hover: linear-gradient(270deg, #fac175 0%, #fe266c 51.35%, #8b5cf5 100%);
-  --shadow-cta: 0px 12px 32px rgba(253, 38, 108, 0.45);
-  --shadow-cta-hover: 0px 2.78348px 25.956px rgba(253, 38, 108, 0.55);
+  --shadow-cta: 0px 7px 22px rgba(253, 38, 108, 0.36);
+  --shadow-cta-hover: 0px 5px 20px rgba(253, 38, 108, 0.44);
 }
 
 /* ================================

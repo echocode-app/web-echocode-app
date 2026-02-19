@@ -13,7 +13,7 @@ const CarouselItem = ({ image, desc, scale = 1 }: CarouselItemProps) => {
       border-accent border hover:border-accent"
     >
       <div className="relative w-22 h-full">
-        <Image src={image} fill alt={desc} style={{ scale: scale }} className="object-contain" />
+        <Image src={image} fill sizes="88px" alt={desc} style={{ scale: scale }} className="object-contain" />
       </div>
     </li>
   );

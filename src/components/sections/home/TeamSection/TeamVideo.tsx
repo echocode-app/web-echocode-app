@@ -65,7 +65,7 @@ const TeamVideo = () => {
           muted
           playsInline
           disablePictureInPicture
-          preload="auto"
+          preload="metadata"
           onLoadedData={() => setLoaded(true)}
           className={`w-full h-full object-cover transition-opacity duration-main 
            ${loaded ? 'opacity-100' : 'opacity-0'}`}

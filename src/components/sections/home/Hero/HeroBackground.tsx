@@ -32,7 +32,7 @@ const HeroBackground = () => {
         playsInline
         disablePictureInPicture
         controls={false}
-        preload="auto"
+        preload="metadata"
         poster={withBasePath('/UI/backgrounds/hero-bg.png')}
         className="w-full h-full object-cover opacity-80"
       >

@@ -1,5 +1,5 @@
 import ContactCTA from '@/components/UI/cta/ContactCTA'
-import Image from 'next/image'
+import Image from '@/components/UI/AppImage'
 
 const HeroCTASection = () => {
   return (

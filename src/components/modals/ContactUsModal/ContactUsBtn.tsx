@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image from '@/components/UI/AppImage';
 import Link from 'next/link';
 import { useContactHref } from '@/hooks/useContactHref';
 

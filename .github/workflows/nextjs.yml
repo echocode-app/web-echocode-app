@@ -76,6 +76,8 @@ jobs:
       - name: Build with Next.js
         env:
           NEXT_PUBLIC_BASE_PATH: /web-echocode-app
+          NEXT_PUBLIC_FORMSPREE_ENDPOINT: ${{ vars.NEXT_PUBLIC_FORMSPREE_ENDPOINT || secrets.NEXT_PUBLIC_FORMSPREE_ENDPOINT }}
+          NEXT_PUBLIC_FORMSPREE_ENDPOINT_PROD: ${{ vars.NEXT_PUBLIC_FORMSPREE_ENDPOINT_PROD || secrets.NEXT_PUBLIC_FORMSPREE_ENDPOINT_PROD }}
         run: ${{ steps.detect-package-manager.outputs.runner }} next build --webpack
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

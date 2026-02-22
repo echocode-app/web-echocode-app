@@ -8,6 +8,7 @@ import { BasedOnSection } from '@/components/sections/home/BasedOn';
 import ExploreSection from '@/components/sections/home/ExploreSection';
 import ProductsSection from '@/components/sections/home/ProductsSection';
 import SectionFirstReveal from '@/components/UI/section/SectionFirstReveal';
+import { withBasePath } from '@/shared/url/withBasePath';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://echocode.app/'),
@@ -24,14 +25,14 @@ export const metadata: Metadata = {
 
   icons: {
     icon: [
-      { url: '/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
-      { url: '/favicon/favicon.svg', type: 'image/svg+xml' },
+      { url: withBasePath('/favicon/favicon-96x96.png'), sizes: '96x96', type: 'image/png' },
+      { url: withBasePath('/favicon/favicon.svg'), type: 'image/svg+xml' },
     ],
-    shortcut: '/favicon/favicon.ico',
-    apple: [{ url: '/favicon/apple-touch-icon.png', sizes: '180x180' }],
+    shortcut: withBasePath('/favicon/favicon.ico'),
+    apple: [{ url: withBasePath('/favicon/apple-touch-icon.png'), sizes: '180x180' }],
   },
 
-  manifest: '/favicon/site.webmanifest',
+  manifest: withBasePath('/favicon/site.webmanifest'),
 
   appleWebApp: {
     title: 'Echocode.app',
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     siteName: 'Echocode.app',
     images: [
       {
-        url: '/UI/logo.png',
+        url: withBasePath('/UI/logo.png'),
         width: 1200,
         height: 630,
         alt: 'Echocode — Software Development Company',
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Echocode.app',
     description: 'Mobile & web development company. iOS, Android, Flutter and iGaming solutions.',
-    images: ['/images/rabbits/hero/design.png'],
+    images: [withBasePath('/images/rabbits/hero/design.png')],
   },
 
   alternates: {

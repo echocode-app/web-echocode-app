@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { withBasePath } from '@/shared/url/withBasePath';
 
 const HeroBackground = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -32,10 +33,10 @@ const HeroBackground = () => {
         disablePictureInPicture
         controls={false}
         preload="auto"
-        poster="/UI/backgrounds/hero-bg.png"
+        poster={withBasePath('/UI/backgrounds/hero-bg.png')}
         className="w-full h-full object-cover opacity-80"
       >
-        <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        <source src={withBasePath('/videos/hero-bg.mp4')} type="video/mp4" />
       </video>
 
       <div className="absolute inset-0 bg-hero-overlay pointer-events-none" />

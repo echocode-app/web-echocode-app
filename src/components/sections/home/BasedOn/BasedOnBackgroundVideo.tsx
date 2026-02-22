@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { withBasePath } from '@/shared/url/withBasePath';
 
 const BasedOnBackgroundVideo = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -47,7 +48,7 @@ const BasedOnBackgroundVideo = () => {
           controlsList="nodownload noplaybackrate noremoteplayback"
           tabIndex={-1}
         >
-          <source src="/videos/video-ios-bg.mp4" type="video/mp4" />
+          <source src={withBasePath('/videos/video-ios-bg.mp4')} type="video/mp4" />
         </video>
       ) : null}
     </div>

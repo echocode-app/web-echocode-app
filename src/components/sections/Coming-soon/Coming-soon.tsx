@@ -44,17 +44,21 @@ const ComingSoon = () => {
             Coming Soon
           </span>
 
-          <Image
-            src="/UI/rabbits/rabbit-coming.png"
-            alt="Rabbit coming soon"
-            width={166}
-            height={95}
-            priority
-            fetchPriority="high"
-            className={`pointer-events-none w-40 lg:w-auto h-auto select-none absolute hidden md:block -top-26 lg:-top-29 right-[10%] lg:right-[20%] ${
+          <span
+            className={`pointer-events-none select-none absolute hidden md:block -top-9 right-[6%] h-23 w-40 lg:-top-6 lg:right-[20%] xl:right-[24%] lg:h-24 lg:w-41.5 ${
               isScrolled ? 'z-10' : 'z-110'
             }`}
-          />
+          >
+            <Image
+              src="/UI/rabbits/rabbit-coming.png"
+              alt="Rabbit coming soon"
+              fill
+              priority
+              fetchPriority="high"
+              sizes="(min-width: 1024px) 166px, 160px"
+              className="object-cover object-bottom"
+            />
+          </span>
         </div>
       </Link>
     </section>

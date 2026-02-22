@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { poppins, wadik, inter, workSans } from '@/styles/fonts/fonts';
 
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import ContactUsModal from '@/components/modals/ContactUsModal';
 import { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -15,10 +15,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal,
 }: Readonly<{
   children: ReactNode;
-  modal: ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -27,9 +25,8 @@ export default function RootLayout({
       >
         <Header />
         <main>{children}</main>
-        {modal}
+        <ContactUsModal />
         <Footer />
-        <SpeedInsights />
       </body>
     </html>
   );

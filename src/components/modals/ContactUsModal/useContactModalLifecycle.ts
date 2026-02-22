@@ -15,6 +15,14 @@ import {
 } from './modal.constants';
 import { forceUnlockBodyScroll, lockBodyScroll, unlockBodyScroll } from './bodyScrollLock';
 
+const normalizePathname = (path: string) => {
+  if (!path || path === '/') {
+    return '/';
+  }
+
+  return path.endsWith('/') ? path.slice(0, -1) : path;
+};
+
 const getSafeReturnPath = () => {
   const rawReturnPath = window.sessionStorage.getItem(CONTACT_RETURN_PATH_KEY) || '/';
   return rawReturnPath.startsWith('/contact') ? '/' : rawReturnPath;
@@ -28,6 +36,7 @@ const getSavedScrollY = () => {
 export const useContactModalLifecycle = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const normalizedPathname = normalizePathname(pathname || '/');
   const [isClosing, setIsClosing] = useState(false);
   const [shouldAnimateEnter] = useState(() => {
     if (typeof window === 'undefined') {
@@ -35,14 +44,14 @@ export const useContactModalLifecycle = () => {
     }
 
     const isSuccessTransition =
-      window.location.pathname === CONTACT_SUCCESS_PATH &&
+      normalizePathname(window.location.pathname) === CONTACT_SUCCESS_PATH &&
       window.sessionStorage.getItem(CONTACT_SUCCESS_FLAG) === '1';
 
     return !isSuccessTransition;
   });
 
-  const isSuccessRoute = pathname === CONTACT_SUCCESS_PATH;
-  const isModalRoute = pathname === CONTACT_PATH || pathname === CONTACT_SUCCESS_PATH;
+  const isSuccessRoute = normalizedPathname === CONTACT_SUCCESS_PATH;
+  const isModalRoute = normalizedPathname === CONTACT_PATH || normalizedPathname === CONTACT_SUCCESS_PATH;
   const shouldAnimateClosing = isClosing && isSuccessRoute;
 
   const clearSession = useCallback(() => {

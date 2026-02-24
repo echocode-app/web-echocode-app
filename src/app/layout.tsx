@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { poppins, wadik, inter, workSans } from '@/styles/fonts/fonts';
 
@@ -29,7 +28,6 @@ export default function RootLayout({
         <main>{children}</main>
         {modal}
         <Footer />
-        <SpeedInsights />
       </body>
     </html>
   );

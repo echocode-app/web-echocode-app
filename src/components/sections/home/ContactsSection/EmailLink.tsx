@@ -4,7 +4,7 @@ import Link from 'next/link';
 const EmailLink = () => {
   return (
     <Link
-      href={'mailto:hello@echocode.com'}
+      href={'mailto:hello@echocode.app'}
       target="blank"
       className="group flex items-center gap-3 px-3 py-2 border-l border-accent"
     >
@@ -20,7 +20,7 @@ const EmailLink = () => {
         className="font-title text-title-sm sm:text-title-base underline
          group-hover:text-accent duration-main"
       >
-        hello<span className="text-[9px] ">@</span>echocode.com
+        hello<span className="text-[9px] ">@</span>echocode.app
       </p>
     </Link>
   );

@@ -16,7 +16,7 @@ const socialLinks = [
   },
   {
     image: '/UI/social-icons/telegram.svg',
-    title: 'Telegram channel',
+    title: 'Telegram',
     link: 'https://t.me/echocode_app',
     width: '18',
   },

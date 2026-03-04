@@ -9,6 +9,9 @@ type SplashLoaderProps = {
   children: ReactNode;
 };
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+const splashLogoSrc = `${basePath}/UI/print_transparent.svg`;
+
 const SplashLoader = ({ children }: SplashLoaderProps) => {
   const { isContentVisible, isOverlayVisible, shouldAnimateLogo } = useFirstVisitLoader();
 
@@ -22,7 +25,7 @@ const SplashLoader = ({ children }: SplashLoaderProps) => {
           .join(' ')}
       >
         <img
-          src="/UI/print_transparent.svg"
+          src={splashLogoSrc}
           alt="Echocode"
           className={['splash-logo', shouldAnimateLogo ? 'is-animating' : '']
             .filter(Boolean)

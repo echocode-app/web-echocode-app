@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   description: 'Echocode',
 };
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+const splashLogoHref = `${basePath}/UI/print_transparent.svg`;
+
 const splashInitScript = `(() => {
   try {
     const key = "echocode:splash:lastSeen";
@@ -38,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preload" href="/UI/print_transparent.svg" as="image" />
+        <link rel="preload" href={splashLogoHref} as="image" />
         <script dangerouslySetInnerHTML={{ __html: splashInitScript }} />
       </head>
       <body

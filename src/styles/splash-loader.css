@@ -1,0 +1,89 @@
+html.splash body {
+  visibility: hidden;
+  overflow: hidden;
+}
+
+html.splash .splash-loader {
+  visibility: visible;
+}
+
+.splash-loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  background: #0b0b0c;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.splash-loader.is-visible,
+html.splash .splash-loader {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.splash-logo {
+  width: clamp(560px, 46vw, 980px);
+  max-width: 92vw;
+  height: auto;
+  transform-origin: center;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  contain: layout style paint;
+  image-rendering: -webkit-optimize-contrast;
+  opacity: 0;
+  animation: splashSmooth 3s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.splash-logo.is-animating {
+  animation-play-state: running;
+}
+
+.splash-loader-content {
+  transition: opacity 400ms ease;
+}
+
+.splash-loader-content.is-hidden,
+html.splash .splash-loader-content {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-loader-content.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+@keyframes splashSmooth {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(0.99);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-logo {
+    animation-duration: 200ms;
+    animation-timing-function: linear;
+  }
+
+  .splash-loader-content {
+    transition-duration: 140ms;
+  }
+}

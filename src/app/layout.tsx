@@ -8,11 +8,21 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ContactUsModal from '@/components/modals/ContactUsModal';
 import SplashLoader from '@/components/UI/loaders/SplashLoader';
+import { withBasePath } from '@/shared/url/withBasePath';
 import { ReactNode } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Echocode',
+  title: 'Echocode.app',
   description: 'Echocode',
+  icons: {
+    icon: [
+      { url: withBasePath('/favicon/favicon-96x96.png'), sizes: '96x96', type: 'image/png' },
+      { url: withBasePath('/favicon/favicon.svg'), type: 'image/svg+xml' },
+    ],
+    shortcut: withBasePath('/favicon/favicon.ico'),
+    apple: [{ url: withBasePath('/favicon/apple-touch-icon.png'), sizes: '180x180' }],
+  },
+  manifest: withBasePath('/favicon/site.webmanifest'),
 };
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';

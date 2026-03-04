@@ -6,6 +6,8 @@ const FULL_TEXT = 'SPECIALIZING IN FULL-CYCLE MOBILE APP DEVELOPMENT';
 
 const TYPING_SPEED = 150;
 const EASE_FACTOR = 0.9;
+const HERO_TYPED_KEY = 'echocode:hero:typed';
+const HERO_RELOAD_HANDLED_AT_KEY = 'echocode:hero:reloadHandledAt';
 
 const headingClasses = `
   font-title
@@ -19,21 +21,50 @@ const HeroHeading = () => {
   const [isFinished, setIsFinished] = useState(false);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
   const typingTimerRef = useRef<number | null>(null);
-  const hasStartedRef = useRef(false);
+  const isTypingRef = useRef(false);
 
   useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setIsReducedMotion(media.matches);
+
+    const navigationEntry = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
+    const isReload = navigationEntry?.type === 'reload';
+    const currentLoadId = String(performance.timeOrigin);
+
+    let isAlreadyTyped = false;
+    try {
+      isAlreadyTyped = sessionStorage.getItem(HERO_TYPED_KEY) === '1';
+      const reloadHandledAt = sessionStorage.getItem(HERO_RELOAD_HANDLED_AT_KEY);
+
+      if (isReload && reloadHandledAt !== currentLoadId) {
+        sessionStorage.removeItem(HERO_TYPED_KEY);
+        sessionStorage.setItem(HERO_RELOAD_HANDLED_AT_KEY, currentLoadId);
+        isAlreadyTyped = false;
+      }
+    } catch {}
+
+    if (isAlreadyTyped) {
+      setDisplayedText(FULL_TEXT);
+      setIsFinished(true);
+      return () => {
+        if (typingTimerRef.current !== null) {
+          window.clearTimeout(typingTimerRef.current);
+        }
+      };
+    }
+
     const startTyping = () => {
-      if (hasStartedRef.current) {
+      if (isTypingRef.current) {
         return;
       }
-      hasStartedRef.current = true;
-
-      const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-      setIsReducedMotion(media.matches);
+      isTypingRef.current = true;
 
       if (media.matches) {
         setDisplayedText(FULL_TEXT);
         setIsFinished(true);
+        try {
+          sessionStorage.setItem(HERO_TYPED_KEY, '1');
+        } catch {}
         return;
       }
 
@@ -49,6 +80,9 @@ const HeroHeading = () => {
           typingTimerRef.current = window.setTimeout(type, delay);
         } else {
           setIsFinished(true);
+          try {
+            sessionStorage.setItem(HERO_TYPED_KEY, '1');
+          } catch {}
         }
       };
 
@@ -66,6 +100,7 @@ const HeroHeading = () => {
       if (typingTimerRef.current !== null) {
         window.clearTimeout(typingTimerRef.current);
       }
+      isTypingRef.current = false;
     };
   }, []);
 

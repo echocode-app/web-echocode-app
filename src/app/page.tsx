@@ -18,9 +18,29 @@ export const metadata: Metadata = {
   description:
     'Echocode is a software development company specializing in iOS, Android, Flutter, Web and iGaming solutions. We provide design, QA and product management services.',
 
+  keywords: [
+    'mobile app development',
+    'iOS development',
+    'Android development',
+    'Flutter development',
+    'web development',
+    'game development',
+    'iGaming development',
+    'QA automation',
+    'product engineering team',
+    'software development company',
+  ],
+
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
   },
 
   icons: {
@@ -41,12 +61,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Echocode.app',
     description:
-      'Custom mobile and web development solutions: iOS, Android, Flutter and iGaming. Design, QA and product management services.',
+      'Custom mobile, web, game and iGaming development: iOS, Android, Flutter, QA and product delivery teams.',
     url: 'https://echocode.app/',
     siteName: 'Echocode.app',
+    locale: 'en_US',
     images: [
       {
-        url: withBasePath('/UI/logo.png'),
+        url: withBasePath('/images/fulllogo.png'),
         width: 1200,
         height: 630,
         alt: 'Echocode — Software Development Company',
@@ -58,8 +79,9 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Echocode.app',
-    description: 'Mobile & web development company. iOS, Android, Flutter and iGaming solutions.',
-    images: [withBasePath('/images/rabbits/hero/design.png')],
+    description:
+      'Mobile, web, game and iGaming development company. iOS, Android, Flutter, QA and product teams.',
+    images: [withBasePath('/images/fulllogo.png')],
   },
 
   alternates: {
@@ -67,9 +89,34 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Echocode.app',
+  url: 'https://echocode.app/',
+  logo: 'https://echocode.app/UI/logo.png',
+  description:
+    'Software development company focused on mobile, web, game and iGaming products with design, QA and product management.',
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: 'hello@echocode.com',
+    },
+  ],
+  makesOffer: [
+    { '@type': 'Offer', name: 'Mobile Development (iOS, Android, Flutter)' },
+    { '@type': 'Offer', name: 'Web Development (PWA and custom platforms)' },
+    { '@type': 'Offer', name: 'Game Development' },
+    { '@type': 'Offer', name: 'iGaming Engineering' },
+    { '@type': 'Offer', name: 'QA and Test Automation' },
+  ],
+};
+
 export default function Home() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <ComingSoon />
       <Hero />
       <SectionFirstReveal>

@@ -26,7 +26,7 @@ const YourNeedsInput = ({ value, disabled = false, error, onChange, onBlur }: Yo
         aria-describedby="needs-error"
         aria-invalid={error ? true : undefined}
         placeholder="e.g. Mobile app design for a fintech startup"
-        className="block pt-6.5 pb-2 pl-4 pr-6 border rounded-secondary leading-3.5 w-full min-h-14 resize-y
+        className="block pt-6.5 pb-2 pl-4 pr-6 border rounded-secondary leading-3.5 w-full h-16 min-h-16 md:h-13 md:min-h-13 resize-y
          hover:border-accent focus:border-accent duration-main transition-colors
        outline-0 text-[14px] font-main text-gray-90 placeholder:text-primary-gray border-white
        disabled:opacity-70 disabled:cursor-not-allowed"

@@ -1,12 +1,17 @@
 import type { NextConfig } from "next";
 
 const repoName = process.env.GITHUB_REPOSITORY?.split("/")[1];
-const githubPagesBasePath =
-  process.env.GITHUB_ACTIONS === "true" && repoName ? `/${repoName}` : "";
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || githubPagesBasePath;
+const isGithubPagesBuild = process.env.GITHUB_ACTIONS === "true" && Boolean(repoName);
+const basePath = isGithubPagesBuild && repoName ? `/${repoName}` : "";
+const formspreeProdEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT_PROD || "";
+const formspreeDefaultEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || formspreeProdEndpoint;
+const formspreeDevEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT_DEV || formspreeDefaultEndpoint;
 
 const nextConfig: NextConfig = {
   output: "export",
+  turbopack: {
+    root: __dirname,
+  },
   ...(basePath
     ? {
         basePath,
@@ -19,6 +24,9 @@ const nextConfig: NextConfig = {
   },
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
+    NEXT_PUBLIC_FORMSPREE_ENDPOINT_PROD: formspreeProdEndpoint,
+    NEXT_PUBLIC_FORMSPREE_ENDPOINT: formspreeDefaultEndpoint,
+    NEXT_PUBLIC_FORMSPREE_ENDPOINT_DEV: formspreeDevEndpoint,
   },
 };
 

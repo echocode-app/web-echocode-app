@@ -32,8 +32,8 @@ export default function ContactInput({
         <span
           aria-hidden="true"
           className="
-            pointer-events-none h-11.5
-            absolute p-4 flex items-center text-white text-[10px] leading-none font-title
+            pointer-events-none absolute top-0 left-0 h-11.5 px-4
+            flex items-center text-white text-[10px] leading-none font-title
           "
         >
           {label}

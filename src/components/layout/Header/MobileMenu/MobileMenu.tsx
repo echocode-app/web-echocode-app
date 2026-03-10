@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
+import { withBasePath } from '@/shared/url/withBasePath';
 
 import MobaileNavList from './MobileNavList';
 
 import Logo from '@/components/UI/Logo';
-import Link from 'next/link';
 
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +50,7 @@ const MobileMenu = () => {
         aria-label="Open menu"
       >
         <span className="absolute inset-0 flex items-center justify-center transition-opacity duration-main">
-          <Image src={'/UI/burger-menu.svg'} width={40} height={40} alt="Menu" />
+          <Image src={withBasePath('/UI/burger-menu.svg')} width={40} height={40} alt="Menu" />
         </span>
       </button>
 
@@ -66,7 +67,7 @@ const MobileMenu = () => {
           </Link>
           <button onClick={handleToggleMenu} className="relative w-10 h-10" aria-label="Close menu">
             <span className="absolute inset-0 flex items-center justify-center">
-              <Image src={'/UI/close.svg'} width={30} height={30} alt="Close" />
+              <Image src={withBasePath('/UI/close.svg')} width={30} height={30} alt="Close" />
             </span>
           </button>
         </div>

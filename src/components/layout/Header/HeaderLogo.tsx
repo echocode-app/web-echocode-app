@@ -4,7 +4,8 @@ import Logo from '@/components/UI/Logo';
 import Link from 'next/link';
 
 const HeaderLogo = () => {
-  const scrollToTop = () => {
+  const scrollToTop = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }

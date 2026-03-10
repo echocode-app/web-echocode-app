@@ -9,7 +9,8 @@ interface FooterNavLinkProps {
 }
 
 const FooterNavLink = ({ children, link }: FooterNavLinkProps) => {
-  const scrollToTop = () => {
+  const scrollToTop = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }

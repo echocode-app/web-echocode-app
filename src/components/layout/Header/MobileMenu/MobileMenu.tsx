@@ -37,7 +37,8 @@ const MobileMenu = () => {
     }
   };
 
-  const handleLogoClick = () => {
+  const handleLogoClick = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
     handleCloseAll();
     scrollToTop();
   };

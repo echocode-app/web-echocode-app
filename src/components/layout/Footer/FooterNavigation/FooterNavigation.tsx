@@ -1,9 +1,8 @@
 import FooterNavLink from './FooterNavLink';
 import FooterSocialLink from './FooterSocialLink';
 import EmailLink from '../EmailLink';
-import Link from 'next/link';
 import SocailLinks from './SocialLinks';
-import Logo from '@/components/UI/Logo';
+import FooterLogo from './FooterLogo';
 
 const FooterNavigation = () => (
   <div
@@ -11,10 +10,7 @@ const FooterNavigation = () => (
    lg:flex-nowrap lg:gap-4 xl:gap-24 bg-white rounded-base"
   >
     <div className="flex w-full justify-between flex-col md:flex-row md:flex-nowrap gap-2 mb-10 lg:mb-0">
-      <Link href={'/'} className="flex flex-col gap-2.5 items-center z-10 mb-6 md:mb-0">
-        <Logo />
-        <p className="font-title text-accent">Echocode.app</p>
-      </Link>
+      <FooterLogo />
       <div className="flex justify-center flex-wrap md:flex-nowrap mx-auto md:mx-0 md:justify-between gap-4 max-w-143.5">
         <div>
           <h3 className="mb-6 font-title text-[10px] text-base-gray opacity-65 tracking-[0.4px] uppercase">

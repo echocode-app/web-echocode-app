@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 import { withBasePath } from '@/shared/url/withBasePath';
@@ -14,6 +15,7 @@ import Logo from '@/components/UI/Logo';
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
+  const pathname = usePathname();
   useLockBodyScroll(isOpen);
 
   const handleCloseAll = () => {
@@ -37,9 +39,19 @@ const MobileMenu = () => {
     }
   };
 
-  const handleLogoClick = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  const handleLogoClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     handleCloseAll();
+
+    if (pathname !== '/') {
+      return;
+    }
+
+    event.preventDefault();
+
+    if (window.location.hash) {
+      window.history.replaceState(null, '', '/');
+    }
+
     scrollToTop();
   };
 

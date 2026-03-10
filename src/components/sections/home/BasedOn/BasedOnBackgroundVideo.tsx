@@ -1,34 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { withBasePath } from '@/shared/url/withBasePath';
+
+import { useBasedOnBackgroundVideo } from './useBasedOnBackgroundVideo';
 
 const BasedOnBackgroundVideo = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (!window.matchMedia('(min-width: 768px)').matches) return;
-    if (!containerRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        setShouldLoadVideo(true);
-        observer.disconnect();
-      },
-      {
-        root: null,
-        rootMargin: '350px 0px',
-        threshold: 0,
-      },
-    );
-
-    observer.observe(containerRef.current);
-
-    return () => observer.disconnect();
-  }, []);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const { shouldLoadVideo, isVideoVisible } = useBasedOnBackgroundVideo(containerRef, videoRef);
 
   return (
     <div
@@ -38,12 +18,15 @@ const BasedOnBackgroundVideo = () => {
     >
       {shouldLoadVideo ? (
         <video
-          className="w-full h-full object-cover"
+          ref={videoRef}
+          className={`w-full h-full object-cover transition-opacity duration-500 ${
+            isVideoVisible ? 'opacity-100' : 'opacity-0'
+          }`}
           autoPlay
           muted
           loop
           playsInline
-          preload="none"
+          preload="auto"
           disablePictureInPicture
           controlsList="nodownload noplaybackrate noremoteplayback"
           tabIndex={-1}

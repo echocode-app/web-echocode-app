@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import ContactUsForm from './ContactUsForm';
 import CloseBtn from './ContactUsForm/CloseBtn';
 import SectionTitle from '@/components/UI/section/SectionTitle';
+import { navLinkHoverEffectClass } from '@/components/layout/Header/NavLink';
 import { useEscapeKey } from '@/hooks/useEscapeKey';
 import { useContactModalLifecycle } from './useContactModalLifecycle';
 
@@ -59,8 +60,12 @@ const ContactUsModal = () => {
             <p className="text-white">
               Get professional advice. Use the form or write us an email:
             </p>
-            <Link href={'mailto:hello@echocode.app'} className="font-semibold text-accent">
-              hello@echocode.app
+            <Link href={'mailto:hello@echocode.app'} className="group relative inline-block">
+              <span
+                className={`relative font-main font-semibold text-accent bg-main-gradient bg-clip-text ${navLinkHoverEffectClass}`}
+              >
+                hello@echocode.app
+              </span>
             </Link>
           </div>
           <ContactUsForm isSuccessRoute={isSuccessRoute} onSuccessSubmit={onSuccessSubmit} />

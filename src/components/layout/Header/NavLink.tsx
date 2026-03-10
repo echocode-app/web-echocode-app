@@ -4,15 +4,18 @@ import { ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export const navLinkBaseClass =
-  "relative font-main uppercase text-main-sm font-semibold lg:text-main-base-link " +
-  "bg-main-gradient bg-clip-text bg-transparent " +
+export const navLinkHoverEffectClass =
   "transition-all duration-main " +
   "group-hover:text-transparent group-hover:bg-clip-text group-hover:after:opacity-100 " +
   "hover:text-transparent hover:bg-clip-text " +
   "after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-[-2px] after:h-px after:w-full " +
   "after:bg-main-gradient after:opacity-0 after:transition-opacity " +
   "after:duration-main hover:after:opacity-100";
+
+export const navLinkBaseClass =
+  "relative font-main uppercase text-main-sm font-semibold lg:text-main-base-link " +
+  "bg-main-gradient bg-clip-text bg-transparent " +
+  navLinkHoverEffectClass;
 
 const navLinkActiveClass = "text-transparent bg-transparent after:opacity-100";
 

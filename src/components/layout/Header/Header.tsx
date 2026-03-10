@@ -2,7 +2,7 @@ import NavList from './NavList';
 import MobileMenu from './MobileMenu';
 
 import SectionContainer from '@/components/UI/section/SectionContainer';
-import LogoScroll from './LogoScroll';
+import HeaderLogo from './HeaderLogo';
 
 const Header = () => {
   return (
@@ -14,7 +14,7 @@ const Header = () => {
     >
       <SectionContainer>
         <div className="flex justify-between items-center z-10">
-          <LogoScroll />
+          <HeaderLogo />
           <div className="hidden md:block">
             <NavList />
           </div>

@@ -3,7 +3,7 @@
 import Logo from '@/components/UI/Logo';
 import Link from 'next/link';
 
-const LogoScroll = () => {
+const HeaderLogo = () => {
   const scrollToTop = () => {
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -17,4 +17,4 @@ const LogoScroll = () => {
   );
 };
 
-export default LogoScroll;
+export default HeaderLogo;

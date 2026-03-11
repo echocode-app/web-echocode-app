@@ -1,23 +1,18 @@
 import {
-  type FirstTouchAttribution,
   persistFirstTouchAttribution,
   readFirstTouchAttribution,
 } from '@/lib/analytics/firstTouchAttribution';
-import { ANALYTICS_INGEST_URL, SITE_HOST, SITE_ID } from '@/lib/siteIngest';
+import { ANALYTICS_INGEST_URL, SITE_ID } from '@/lib/siteIngest';
 
 export const SPLASH_FINISHED_EVENT = 'splash:finished';
 
 export type AnalyticsPageViewPayload = {
   siteId: string;
-  siteHost: string;
   path: string;
   url: string;
-  title: string;
-  referrer: string;
-  source: 'website';
-  metadata?: {
-    attribution?: FirstTouchAttribution;
-  };
+  title: string | null;
+  referrer: string | null;
+  source: string;
 };
 
 export const buildAnalyticsPageViewPayload = (): AnalyticsPageViewPayload | null => {
@@ -27,20 +22,15 @@ export const buildAnalyticsPageViewPayload = (): AnalyticsPageViewPayload | null
 
   const currentUrl = new URL(window.location.href);
   const attribution = persistFirstTouchAttribution() || readFirstTouchAttribution();
+  void attribution;
 
   return {
     siteId: SITE_ID,
-    siteHost: SITE_HOST,
     path: `${currentUrl.pathname}${currentUrl.search}`,
     url: currentUrl.toString(),
-    title: document.title,
-    referrer: document.referrer,
-    source: 'website',
-    metadata: attribution
-      ? {
-          attribution,
-        }
-      : undefined,
+    title: document.title || null,
+    referrer: document.referrer || null,
+    source: SITE_ID,
   };
 };
 

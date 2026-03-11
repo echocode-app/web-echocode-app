@@ -10,8 +10,8 @@ export const personNameSchema = z
   .max(40, 'Must contain at most 40 characters')
   .regex(NAME_PATTERN, 'Only letters, spaces, apostrophes and hyphens are allowed');
 
-/** Optional message for project request. */
-export const projectMessageSchema = z
+/** Optional project needs for the contact modal. */
+export const projectNeedsSchema = z
   .string()
   .trim()
   .min(10, 'Must contain at least 10 characters')

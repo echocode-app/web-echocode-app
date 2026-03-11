@@ -43,7 +43,7 @@ const ContactUsModal = () => {
       <div className="px-4 md:px-8 max-w-280 w-full">
         <motion.div
           onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}
-          className="relative  w-full flex flex-col mx-auto p-5 pt-10 md:pt-15 md:pb-15 md:px-5 lg:p-15
+          className="relative  w-full flex flex-col mx-auto p-5 pt-10 md:pt-12 md:pb-5 md:px-5 lg:p-15 lg:pb-8
            rounded-secondary border bg-[rgba(0,0,0,0.8)] border-white backdrop-blur-[26px]"
           initial={shouldAnimateEnter ? { y: 20, opacity: 0 } : false}
           animate={shouldAnimateClosing ? { y: 12, opacity: 0 } : { y: 0, opacity: 1 }}
@@ -53,10 +53,10 @@ const ContactUsModal = () => {
           <div className="absolute top-1 right-2 md:top-4 md:right-4">
             <CloseBtn onClose={closeByButton} />
           </div>
-          <div className=" md:mb-2.5">
+          <div className="md:mb-2">
             <SectionTitle>GOT A PROJECT IN MIND?</SectionTitle>
           </div>
-          <div className="flex flex-wrap md:gap-1 text-main-sm mb-2 md:mb-8">
+          <div className="flex flex-wrap md:gap-1 text-main-sm mb-2 md:mb-6">
             <p className="text-white">
               Get professional advice. Use the form or write us an email:
             </p>

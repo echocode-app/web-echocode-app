@@ -3,10 +3,7 @@ import {
   persistFirstTouchAttribution,
   readFirstTouchAttribution,
 } from '@/lib/analytics/firstTouchAttribution';
-
-export const ANALYTICS_INGEST_URL = process.env.NEXT_PUBLIC_ANALYTICS_INGEST_URL?.trim() || '';
-export const ANALYTICS_SITE_ID =
-  process.env.NEXT_PUBLIC_ANALYTICS_SITE_ID?.trim() || 'echocode_app';
+import { ANALYTICS_INGEST_URL, SITE_HOST, SITE_ID } from '@/lib/siteIngest';
 
 export const SPLASH_FINISHED_EVENT = 'splash:finished';
 
@@ -32,8 +29,8 @@ export const buildAnalyticsPageViewPayload = (): AnalyticsPageViewPayload | null
   const attribution = persistFirstTouchAttribution() || readFirstTouchAttribution();
 
   return {
-    siteId: ANALYTICS_SITE_ID,
-    siteHost: currentUrl.host,
+    siteId: SITE_ID,
+    siteHost: SITE_HOST,
     path: `${currentUrl.pathname}${currentUrl.search}`,
     url: currentUrl.toString(),
     title: document.title,

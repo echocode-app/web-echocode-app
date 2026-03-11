@@ -8,6 +8,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ContactUsModal from '@/components/modals/ContactUsModal';
 import SplashLoader from '@/components/UI/loaders/SplashLoader';
+import PageViewTracker from '@/components/analytics/PageViewTracker';
 import { withBasePath } from '@/shared/url/withBasePath';
 import { ReactNode } from 'react';
 
@@ -57,6 +58,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${inter.variable} ${wadik.variable} ${workSans.variable} antialiased relative`}
       >
+        <PageViewTracker />
         <SplashLoader>
           <Header />
           <main>{children}</main>

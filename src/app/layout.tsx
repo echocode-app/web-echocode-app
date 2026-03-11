@@ -7,6 +7,7 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import SplashLoader from '@/components/UI/loaders/SplashLoader';
+import PageViewTracker from '@/components/analytics/PageViewTracker';
 import { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -82,6 +83,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${inter.variable} ${wadik.variable} ${workSans.variable} antialiased relative`}
       >
+        <PageViewTracker />
         <SplashLoader>
           <Header />
           <main>{children}</main>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { projectSubmissionSchema } from '@/shared/validation';
+import { FORM_SUBMIT_URL, SITE_HOST, SITE_ID } from '@/lib/siteIngest';
 
 type FormValues = {
   firstName: string;
@@ -25,17 +26,6 @@ const normalizeValues = (values: FormValues) => ({
   email: values.email.trim(),
   message: values.message.trim(),
 });
-
-const getFormspreeEndpoint = () => {
-  const isProd = process.env.NODE_ENV === 'production';
-  const defaultEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
-
-  if (isProd) {
-    return process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT_PROD || defaultEndpoint;
-  }
-
-  return process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT_DEV || defaultEndpoint;
-};
 
 const getFieldError = (field: keyof FormValues, candidateValues: FormValues) => {
   const normalized = normalizeValues(candidateValues);
@@ -117,25 +107,30 @@ export const useContactUsForm = ({ isSuccessRoute = false, onSuccessSubmit }: Us
       return;
     }
 
-    const endpoint = getFormspreeEndpoint();
-    if (!endpoint) {
+    if (!FORM_SUBMIT_URL) {
       setErrors({ form: 'Form submit endpoint is not configured yet' });
       return;
     }
 
-    const formData = new FormData();
-    formData.append('firstName', normalized.firstName);
-    formData.append('lastName', normalized.lastName);
-    formData.append('email', normalized.email);
-    formData.append('message', normalized.message);
+    const payload = {
+      siteId: SITE_ID,
+      siteHost: SITE_HOST,
+      source: 'website' as const,
+      firstName: normalized.firstName,
+      lastName: normalized.lastName,
+      email: normalized.email,
+      message: normalized.message || undefined,
+    };
 
     setIsPending(true);
     try {
-      // Formspree accepts multipart FormData, which keeps payload shape future-proof.
-      const response = await fetch(endpoint, {
+      const response = await fetch(FORM_SUBMIT_URL, {
         method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {

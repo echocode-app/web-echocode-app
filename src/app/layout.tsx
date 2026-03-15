@@ -56,7 +56,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: splashInitScript }} />
       </head>
       <body
-        className={`${poppins.variable} ${inter.variable} ${wadik.variable} ${workSans.variable} antialiased relative`}
+        className={`${poppins.variable} ${inter.variable} ${wadik.variable} ${workSans.variable} antialiased relative `}
       >
         <PageViewTracker />
         <SplashLoader>

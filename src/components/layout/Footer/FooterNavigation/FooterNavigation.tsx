@@ -18,19 +18,19 @@ const FooterNavigation = () => (
           </h3>
           <ul className="flex flex-col gap-1 w-full sm:w-34 xl:w-51">
             <FooterNavLink link="/">Home</FooterNavLink>
-            {/* <FooterNavLink link="/portfolio">Portfolio</FooterNavLink> */}
+            <FooterNavLink link="/portfolio">Portfolio</FooterNavLink>
           </ul>
         </div>
-        {/* <div>
+        <div>
           <h3 className="mb-6 font-title text-[10px] text-base-gray opacity-65 tracking-[0.4px] uppercase">
             products
           </h3>
           <ul className="flex flex-col gap-1 w-full sm:w-34 xl:w-51">
-            <FooterNavLink link="/portfolio">Cleaning-APP</FooterNavLink>
-            <FooterNavLink link="/portfolio">E-commerce</FooterNavLink>
-            <FooterNavLink link="/portfolio">Food & Drinks</FooterNavLink>
+            <FooterNavLink link="/portfolio/cleaning">Cleaning-APP</FooterNavLink>
+            <FooterNavLink link="/portfolio/e-commers">E-commerce</FooterNavLink>
+            <FooterNavLink link="/portfolio/food">Food & Drinks</FooterNavLink>
           </ul>
-        </div> */}
+        </div>
         <div>
           <h3 className="mb-6 font-title text-[10px] text-base-gray opacity-65 tracking-[0.4px] uppercase">
             Subscribe to

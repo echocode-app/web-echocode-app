@@ -8,7 +8,7 @@
   --main-text-color: #ffffff;
 }
 
-html {
+html:has(#home-page) {
   scroll-behavior: smooth;
 }
 

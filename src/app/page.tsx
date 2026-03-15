@@ -115,8 +115,11 @@ const jsonLd = {
 
 export default function Home() {
   return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    <div id="home-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <ComingSoon />
       <Hero />
       <SectionFirstReveal>
@@ -137,6 +140,6 @@ export default function Home() {
       <SectionFirstReveal>
         <ContactsSection />
       </SectionFirstReveal>
-    </>
+    </div>
   );
 }

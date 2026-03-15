@@ -38,7 +38,7 @@ const ECommers = () => {
       <PlanningSection
         list={planning}
         image={'/images/projects/e-commers/planning.png'}
-        imageStyle="relative w-full max-w-157.5 aspect-157.5/139"
+        imageStyle="relative w-full max-w-157.5 aspect-157/139"
       />
       <FeaturesSection list={features} />
       <ScreensSection imagePath="/images/projects/e-commers/screens.png" />

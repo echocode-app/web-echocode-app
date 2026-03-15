@@ -11,7 +11,7 @@ const FooterNavigation = () => (
   >
     <div className="flex w-full justify-between flex-col md:flex-row md:flex-nowrap gap-2 mb-10 lg:mb-0">
       <FooterLogo />
-      <div className="flex justify-center flex-wrap md:flex-nowrap mx-auto md:mx-0 md:justify-between gap-4 max-w-143.5">
+      <div className="flex flex-wrap md:flex-nowrap mx-auto md:mx-0 md:justify-between gap-4 max-w-143.5">
         <div>
           <h3 className="mb-6 font-title text-[10px] text-base-gray opacity-65 tracking-[0.4px] uppercase">
             Navigation

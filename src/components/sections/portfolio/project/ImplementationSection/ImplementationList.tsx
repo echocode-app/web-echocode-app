@@ -31,9 +31,9 @@ const ImplementationList = ({ list }: ImplementationListProps) => {
   const activeIndex = useAutoIndex(list.length);
 
   return (
-    <ul className="flex flex-wrap justify-center gap-6">
+    <ul className="flex flex-wrap gap-6">
       {list.map((item, i) => (
-        <li key={i} className="max-w-45">
+        <li key={i} className="w-full min-[420px]:max-w-45">
           <CycleCard {...item} active={activeIndex === i} />
         </li>
       ))}

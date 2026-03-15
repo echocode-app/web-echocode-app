@@ -25,7 +25,7 @@ const PlanningSection = ({ list, image, imageStyle }: PlanningSectionProps) => {
               className="object-cover rounded-secondary"
             />
           </div>
-          <div>
+          <div className="w-full max-w-140 lg:w-fit">
             <SectionTitle marginBottom="24px">Planning</SectionTitle>
             <PlanningList list={list} />
           </div>

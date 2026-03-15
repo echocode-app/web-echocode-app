@@ -15,7 +15,7 @@ interface ImplementationSectionProps {
 const ImplementationSection = ({ subtitle, list }: ImplementationSectionProps) => {
   return (
     <section className="pb-10 md:pb-31">
-      <SectionGradientLine height="1" />
+      <SectionGradientLine height="1" container="project" />
       <SectionProjectContainer>
         <SectionTitle marginBottom="10px">Implementation</SectionTitle>
         <p className="text-main-sm mb-10">{subtitle}</p>

@@ -11,8 +11,10 @@ import SplashLoader from '@/components/UI/loaders/SplashLoader';
 import PageViewTracker from '@/components/analytics/PageViewTracker';
 import { withBasePath } from '@/shared/url/withBasePath';
 import { ReactNode } from 'react';
+import { SEO_BASE_URL } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SEO_BASE_URL),
   title: 'Echocode.app',
   description: 'Echocode',
   icons: {

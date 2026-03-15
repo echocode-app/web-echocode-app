@@ -14,7 +14,7 @@ interface PlanningSectionProps {
 const PlanningSection = ({ list, image, imageStyle }: PlanningSectionProps) => {
   return (
     <section className="pb-10 md:pb-25">
-      <SectionGradientLine height="1" />
+      <SectionGradientLine height="1" container="project" />
       <SectionProjectContainer>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-0">
           <div className={imageStyle}>

@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import { AboutSectionECommerse } from '@/components/sections/portfolio/project/AboutSection';
 import { ImplementationSection } from '@/components/sections/portfolio/project/ImplementationSection';
 import ChallengesSection from '@/components/sections/portfolio/project/ChallengesSection';
@@ -13,6 +15,16 @@ import planning from '@/data/projects/planning/e-commerce.json';
 import features from '@/data/projects/features/e-commerce.json';
 import technologies from '@/data/projects/technologies/e-commerce.json';
 import HeroBackground from '@/components/UI/HeroBackground';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'E-commerce Project by Echocode',
+  description:
+    'An e-commerce project by Echocode focused on product research, UX, implementation planning, feature design and mobile commerce delivery.',
+  path: '/portfolio/e-commers/',
+  image: '/images/projects/e-commers/screens.png',
+  keywords: ['e-commerce project', 'mobile commerce app', 'product development project'],
+});
 
 const ECommers = () => {
   return (

@@ -9,7 +9,7 @@ import { withBasePath } from '@/shared/url/withBasePath';
 const ImplementationCleaningSection = () => {
   return (
     <section className="pb-10 md:pb-31">
-      <SectionGradientLine height="1" />
+      <SectionGradientLine height="1" container="project" />
       <SectionProjectContainer>
         <SectionTitle marginBottom="40px">Implementation</SectionTitle>
         <div className="flex gap-10 lg:gap-0 flex-col lg:flex-row items-center lg:justify-between">

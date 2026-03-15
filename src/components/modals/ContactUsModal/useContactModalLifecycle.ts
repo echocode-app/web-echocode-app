@@ -4,14 +4,15 @@ import { useCallback, useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import {
-  CONTACT_PATH,
+  CONTACT_ROUTE_CONFIGS,
   CONTACT_RETURN_PATH_KEY,
   CONTACT_SCROLL_Y_KEY,
   CONTACT_SUCCESS_FLAG,
-  CONTACT_SUCCESS_PATH,
+  DEFAULT_CONTACT_ROUTE_CONFIG,
   SCROLL_RESTORE_DELAY_MS,
   SUCCESS_AUTO_CLOSE_MS,
   SUCCESS_CLOSE_ANIMATION_MS,
+  type ContactRouteConfig,
 } from './modal.constants';
 import { forceUnlockBodyScroll, lockBodyScroll, unlockBodyScroll } from './bodyScrollLock';
 
@@ -23,9 +24,19 @@ const normalizePathname = (path: string) => {
   return path.endsWith('/') ? path.slice(0, -1) : path;
 };
 
+const isModalRouteForConfig = (pathname: string, routeConfig: ContactRouteConfig) =>
+  pathname === routeConfig.contactPath || pathname === routeConfig.successPath;
+
+const getRouteConfig = (pathname: string) =>
+  CONTACT_ROUTE_CONFIGS.find(
+    (routeConfig) => pathname === routeConfig.returnPath || isModalRouteForConfig(pathname, routeConfig)
+  ) ?? DEFAULT_CONTACT_ROUTE_CONFIG;
+
 const getSafeReturnPath = () => {
-  const rawReturnPath = window.sessionStorage.getItem(CONTACT_RETURN_PATH_KEY) || '/';
-  return rawReturnPath.startsWith('/contact') ? '/' : rawReturnPath;
+  const rawReturnPath = normalizePathname(window.sessionStorage.getItem(CONTACT_RETURN_PATH_KEY) || '/');
+  const routeConfig = getRouteConfig(rawReturnPath);
+
+  return isModalRouteForConfig(rawReturnPath, routeConfig) ? routeConfig.returnPath : rawReturnPath;
 };
 
 const getSavedScrollY = () => {
@@ -37,6 +48,7 @@ export const useContactModalLifecycle = () => {
   const router = useRouter();
   const pathname = usePathname();
   const normalizedPathname = normalizePathname(pathname || '/');
+  const routeConfig = getRouteConfig(normalizedPathname);
   const [isClosing, setIsClosing] = useState(false);
   const [shouldAnimateEnter] = useState(() => {
     if (typeof window === 'undefined') {
@@ -44,14 +56,14 @@ export const useContactModalLifecycle = () => {
     }
 
     const isSuccessTransition =
-      normalizePathname(window.location.pathname) === CONTACT_SUCCESS_PATH &&
+      normalizePathname(window.location.pathname) === getRouteConfig(normalizePathname(window.location.pathname)).successPath &&
       window.sessionStorage.getItem(CONTACT_SUCCESS_FLAG) === '1';
 
     return !isSuccessTransition;
   });
 
-  const isSuccessRoute = normalizedPathname === CONTACT_SUCCESS_PATH;
-  const isModalRoute = normalizedPathname === CONTACT_PATH || normalizedPathname === CONTACT_SUCCESS_PATH;
+  const isSuccessRoute = normalizedPathname === routeConfig.successPath;
+  const isModalRoute = isModalRouteForConfig(normalizedPathname, routeConfig);
   const shouldAnimateClosing = isClosing && isSuccessRoute;
 
   const clearSession = useCallback(() => {
@@ -84,7 +96,7 @@ export const useContactModalLifecycle = () => {
     window.setTimeout(() => {
       closeToReturnPath();
     }, SUCCESS_CLOSE_ANIMATION_MS);
-  }, [closeToReturnPath, isClosing]);
+  }, [closeToReturnPath, isClosing, setIsClosing]);
 
   const closeNormalFlow = useCallback(() => {
     closeToReturnPath();
@@ -110,8 +122,8 @@ export const useContactModalLifecycle = () => {
   const onSuccessSubmit = useCallback(() => {
     setIsClosing(false);
     window.sessionStorage.setItem(CONTACT_SUCCESS_FLAG, '1');
-    router.replace(CONTACT_SUCCESS_PATH, { scroll: false });
-  }, [router]);
+    router.replace(routeConfig.successPath, { scroll: false });
+  }, [routeConfig.successPath, router, setIsClosing]);
 
   useEffect(() => {
     if (!isModalRoute) {
@@ -127,11 +139,16 @@ export const useContactModalLifecycle = () => {
 
     // Store the route where the user came from to guarantee a deterministic close behavior.
     if (!window.sessionStorage.getItem(CONTACT_RETURN_PATH_KEY)) {
-      let returnPath = '/';
+      let returnPath = routeConfig.returnPath;
       const fromParam = new URL(window.location.href).searchParams.get('from');
+      const normalizedFromPath = fromParam ? normalizePathname(fromParam) : null;
 
-      if (fromParam && fromParam.startsWith('/') && !fromParam.startsWith('/contact')) {
-        returnPath = fromParam;
+      if (
+        normalizedFromPath &&
+        normalizedFromPath.startsWith('/') &&
+        !isModalRouteForConfig(normalizedFromPath, getRouteConfig(normalizedFromPath))
+      ) {
+        returnPath = normalizedFromPath;
       }
 
       window.sessionStorage.setItem(CONTACT_RETURN_PATH_KEY, returnPath);
@@ -140,7 +157,7 @@ export const useContactModalLifecycle = () => {
     return () => {
       unlockBodyScroll();
     };
-  }, [isModalRoute]);
+  }, [isModalRoute, routeConfig.returnPath]);
 
   useEffect(() => {
     // Prevent direct access to /contact/success without a real successful submit.
@@ -150,9 +167,9 @@ export const useContactModalLifecycle = () => {
 
     const isAllowed = window.sessionStorage.getItem(CONTACT_SUCCESS_FLAG) === '1';
     if (!isAllowed) {
-      router.replace(CONTACT_PATH, { scroll: false });
+      router.replace(routeConfig.contactPath, { scroll: false });
     }
-  }, [isClosing, isSuccessRoute, router]);
+  }, [isClosing, isSuccessRoute, routeConfig.contactPath, router]);
 
   useEffect(() => {
     if (!isSuccessRoute) {

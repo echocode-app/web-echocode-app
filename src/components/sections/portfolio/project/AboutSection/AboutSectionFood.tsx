@@ -7,7 +7,7 @@ import { withBasePath } from '@/shared/url/withBasePath';
 const AboutSectionFood = () => {
   return (
     <section className="pb-10 md:pb-25">
-      <SectionGradientLine height="1" />
+      <SectionGradientLine height="1" container="project" />
       <SectionProjectContainer>
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-4 lg:gap-0 mb-3">
           <div className="p-3 max-w-141.5">

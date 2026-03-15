@@ -27,15 +27,13 @@ const FooterNavLink = ({ children, link }: FooterNavLinkProps) => {
   };
 
   return (
-    <li>
-      <Link
-        href={link}
-        onClick={handleHomeClick}
-        className="block w-full text-main-base text-base-gray hover:text-accent duration-main"
-      >
-        {children}
-      </Link>
-    </li>
+    <Link
+      href={link}
+      onClick={handleHomeClick}
+      className="block w-full text-main-base text-base-gray hover:text-accent duration-main"
+    >
+      {children}
+    </Link>
   );
 };
 

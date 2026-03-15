@@ -10,7 +10,7 @@ interface TechnologySectionProps {
 const TechnologySection = ({ list }: TechnologySectionProps) => {
   return (
     <section className="pb-10 md:pb-15">
-      <SectionGradientLine height="1" />
+      <SectionGradientLine height="1" container="project" />
       <SectionProjectContainer>
         <SectionTitle marginBottom="40px">Technology Stack</SectionTitle>
         <TechnologyList list={list} />

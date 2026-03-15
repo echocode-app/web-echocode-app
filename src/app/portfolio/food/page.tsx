@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import { AboutSectionFood } from '@/components/sections/portfolio/project/AboutSection';
 import ChallengesSection from '@/components/sections/portfolio/project/ChallengesSection';
 import { ImplementationSection } from '@/components/sections/portfolio/project/ImplementationSection';
@@ -13,6 +15,16 @@ import planning from '@/data/projects/planning/food.json';
 import features from '@/data/projects/features/food.json';
 import technologies from '@/data/projects/technologies/food.json';
 import HeroBackground from '@/components/UI/HeroBackground';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Food & Drinks App Project by Echocode',
+  description:
+    'A food and drinks app project by Echocode with planning, UX, implementation, feature design and prototype delivery details.',
+  path: '/portfolio/food/',
+  image: '/images/projects/food/screens.png',
+  keywords: ['food app project', 'restaurant app development', 'mobile product project'],
+});
 
 const Food = () => {
   return (

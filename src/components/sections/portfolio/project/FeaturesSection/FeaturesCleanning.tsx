@@ -5,7 +5,7 @@ import SectionTitle from '@/components/UI/section/SectionTitle';
 const FeaturesCleanning = () => {
   return (
     <section className="pb-10 md:pb-25">
-      <SectionGradientLine height="1" />
+      <SectionGradientLine height="1" container="project" />
       <SectionProjectContainer>
         <div className="text-[#E3E4E6]">
           <SectionTitle marginBottom="40px">Main Features of the Project</SectionTitle>

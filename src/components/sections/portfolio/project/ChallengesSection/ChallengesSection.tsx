@@ -14,7 +14,7 @@ interface ChallengesSectionProps {
 const ChallengesSection = ({ list, image, position }: ChallengesSectionProps) => {
   return (
     <section className="pb-10 md:pb-25">
-      <SectionGradientLine height="1" />
+      <SectionGradientLine height="1" container="project" />
       <SectionProjectContainer>
         <div className="flex justify-center lg:justify-between">
           <div className="max-w-141.5">

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import Home from '../page';
+import PortfolioPage from '../page';
 import { toAbsoluteUrl } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = {
@@ -13,10 +13,10 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: toAbsoluteUrl('/'),
+    canonical: toAbsoluteUrl('/portfolio/'),
   },
 };
 
-export default function ContactPage() {
-  return <Home />;
+export default function PortfolioContactPage() {
+  return <PortfolioPage />;
 }

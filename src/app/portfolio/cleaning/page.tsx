@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import AboutSectionCleaning from '@/components/sections/portfolio/project/AboutSection/AboutSectionCleaning';
 import ChallengesSection from '@/components/sections/portfolio/project/ChallengesSection';
 import FeaturesCleanning from '@/components/sections/portfolio/project/FeaturesSection/FeaturesCleanning';
@@ -7,10 +9,20 @@ import ProptotypeSection from '@/components/sections/portfolio/project/Prototype
 import ScreensSection from '@/components/sections/portfolio/project/ScreensSection';
 import TechnologySection from '@/components/sections/portfolio/project/TechnologySection';
 import HeroBackground from '@/components/UI/HeroBackground';
+import { buildPageMetadata } from '@/lib/seo/metadata';
 
 import challenges from '@/data/projects/challenges/cleaning.json';
 import planning from '@/data/projects/planning/cleaning.json';
 import technologies from '@/data/projects/technologies/cleaning.json';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Cleaning App Project by Echocode',
+  description:
+    'A cleaning app project by Echocode covering product UX, mobile design, implementation stages, prototype validation and delivery.',
+  path: '/portfolio/cleaning/',
+  image: '/images/projects/cleaning/screens.png',
+  keywords: ['cleaning app project', 'mobile app development project', 'ux ui project'],
+});
 
 const Cleaning = () => {
   return (

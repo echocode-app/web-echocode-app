@@ -2,12 +2,14 @@ import {
   persistFirstTouchAttribution,
   readFirstTouchAttribution,
 } from '@/lib/analytics/firstTouchAttribution';
-import { ANALYTICS_INGEST_URL, SITE_ID } from '@/lib/siteIngest';
+import { getClientSiteConfig } from '@/lib/site/clientSiteContext';
+import { ANALYTICS_INGEST_URL } from '@/lib/siteIngest';
 
 export const SPLASH_FINISHED_EVENT = 'splash:finished';
 
 export type AnalyticsPageViewPayload = {
   siteId: string;
+  siteHost: string;
   path: string;
   url: string;
   title: string | null;
@@ -22,15 +24,17 @@ export const buildAnalyticsPageViewPayload = (): AnalyticsPageViewPayload | null
 
   const currentUrl = new URL(window.location.href);
   const attribution = persistFirstTouchAttribution() || readFirstTouchAttribution();
-  void attribution;
+  const siteConfig = getClientSiteConfig();
 
   return {
-    siteId: SITE_ID,
+    siteId: siteConfig.siteId,
+    siteHost: siteConfig.siteHost,
     path: `${currentUrl.pathname}${currentUrl.search}`,
     url: currentUrl.toString(),
     title: document.title || null,
     referrer: document.referrer || null,
-    source: SITE_ID,
+    source: siteConfig.defaultAnalyticsSource,
+    ...(attribution ? { attribution } : {}),
   };
 };
 

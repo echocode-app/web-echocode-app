@@ -3,6 +3,7 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { markHomeNavigationScrollReset } from '@/components/layout/HomeNavigationScrollReset';
 
 interface FooterNavLinkProps {
   children: ReactNode;
@@ -13,7 +14,12 @@ const FooterNavLink = ({ children, link }: FooterNavLinkProps) => {
   const pathname = usePathname();
 
   const handleHomeClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    if (link !== '/' || pathname !== '/') {
+    if (link !== '/') {
+      return;
+    }
+
+    if (pathname !== '/') {
+      markHomeNavigationScrollReset();
       return;
     }
 

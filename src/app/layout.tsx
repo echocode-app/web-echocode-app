@@ -5,6 +5,7 @@ import '@/styles/splash-loader.css';
 
 import './globals.css';
 import Header from '@/components/layout/Header';
+import PageTransition from '@/components/layout/PageTransition';
 import Footer from '@/components/layout/Footer';
 import ContactUsModal from '@/components/modals/ContactUsModal';
 import SplashLoader from '@/components/UI/loaders/SplashLoader';
@@ -63,7 +64,9 @@ export default function RootLayout({
         <PageViewTracker />
         <SplashLoader>
           <Header />
-          <main>{children}</main>
+          <main>
+            <PageTransition>{children}</PageTransition>
+          </main>
           <ContactUsModal />
           <Footer />
         </SplashLoader>

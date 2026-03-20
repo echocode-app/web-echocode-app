@@ -3,12 +3,14 @@
 import Logo from '@/components/UI/Logo';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { markHomeNavigationScrollReset } from '@/components/layout/HomeNavigationScrollReset';
 
 const FooterLogo = () => {
   const pathname = usePathname();
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (pathname !== '/') {
+      markHomeNavigationScrollReset();
       return;
     }
 
@@ -22,7 +24,11 @@ const FooterLogo = () => {
   };
 
   return (
-    <Link href={'/'} onClick={handleClick} className="flex flex-col gap-2.5 items-center z-10 mb-6 md:mb-0">
+    <Link
+      href={'/'}
+      onClick={handleClick}
+      className="flex flex-col gap-2.5 items-center z-10 mb-6 md:mb-0"
+    >
       <Logo />
       <p className="font-title text-accent">Echocode.app</p>
     </Link>

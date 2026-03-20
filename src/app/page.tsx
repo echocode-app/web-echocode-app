@@ -8,6 +8,7 @@ import { BasedOnSection } from '@/components/sections/home/BasedOn';
 import ExploreSection from '@/components/sections/home/ExploreSection';
 import ProductsSection from '@/components/sections/home/ProductsSection';
 import SectionFirstReveal from '@/components/UI/section/SectionFirstReveal';
+import HomeNavigationScrollReset from '@/components/layout/HomeNavigationScrollReset';
 import { withBasePath } from '@/shared/url/withBasePath';
 import { buildPageMetadata, toAbsoluteUrl } from '@/lib/seo/metadata';
 
@@ -85,6 +86,7 @@ const jsonLd = {
 export default function Home() {
   return (
     <div id="home-page">
+      <HomeNavigationScrollReset />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

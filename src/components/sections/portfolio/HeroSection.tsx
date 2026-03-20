@@ -1,15 +1,15 @@
 import Image from 'next/image';
 
-import PageTitle from '@/components/UI/PageTitle';
 import SectionContainer from '@/components/UI/section/SectionContainer';
 
 import ContactButton from '@/components/UI/buttons/ContactButton';
+import PortfolioHeroHeading from './PortfolioHeroHeading';
 
 const HeroSection = () => {
   return (
     <section className="py-10 md:pt-14 md:pb-21 overflow-hidden">
       <SectionContainer>
-        <PageTitle>We empower businesses to embrace a mobile-first strategy</PageTitle>
+        <PortfolioHeroHeading />
         <p className="text-center mt-5">
           Explore our portfolio to find the solution tailored to your needs
         </p>

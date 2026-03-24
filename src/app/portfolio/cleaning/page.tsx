@@ -8,8 +8,9 @@ import PlanningSection from '@/components/sections/portfolio/project/PlanningSec
 import ProptotypeSection from '@/components/sections/portfolio/project/PrototypeSection';
 import ScreensSection from '@/components/sections/portfolio/project/ScreensSection';
 import TechnologySection from '@/components/sections/portfolio/project/TechnologySection';
-import HeroBackground from '@/components/UI/HeroBackground';
+import AmbientHeroBackground from '@/components/UI/hero-background/AmbientHeroBackground';
 import SectionFirstReveal from '@/components/UI/section/SectionFirstReveal';
+import TypedHeroHeading from '@/components/UI/TypedHeroHeading';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 import challenges from '@/data/projects/challenges/cleaning.json';
@@ -28,12 +29,13 @@ export const metadata: Metadata = buildPageMetadata({
 const Cleaning = () => {
   return (
     <>
-      <HeroBackground />
       <SectionFirstReveal>
-        <section className="pt-42 pb-37.5">
-          <h1 className="text-title-3xl md:text-title-5xl lg:text-title-6xl font-title text-center">
-            CLEANING-APP
-          </h1>
+        <section className="relative overflow-hidden pt-42 pb-37.5">
+          <AmbientHeroBackground />
+          <TypedHeroHeading
+            text="CLEANING-APP"
+            className="text-title-3xl md:text-title-5xl lg:text-title-6xl font-title text-center"
+          />
         </section>
       </SectionFirstReveal>
       <SectionFirstReveal>

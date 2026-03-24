@@ -14,8 +14,9 @@ import challenges from '@/data/projects/challenges/e-commerce.json';
 import planning from '@/data/projects/planning/e-commerce.json';
 import features from '@/data/projects/features/e-commerce.json';
 import technologies from '@/data/projects/technologies/e-commerce.json';
-import HeroBackground from '@/components/UI/HeroBackground';
+import AmbientHeroBackground from '@/components/UI/hero-background/AmbientHeroBackground';
 import SectionFirstReveal from '@/components/UI/section/SectionFirstReveal';
+import TypedHeroHeading from '@/components/UI/TypedHeroHeading';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata({
@@ -30,12 +31,13 @@ export const metadata: Metadata = buildPageMetadata({
 const ECommers = () => {
   return (
     <>
-      <HeroBackground />
       <SectionFirstReveal>
-        <section className="pt-42 pb-37.5">
-          <h1 className="text-title-3xl md:text-title-5xl lg:text-title-6xl font-title text-center uppercase">
-            E-commerce
-          </h1>
+        <section className="relative overflow-hidden pt-42 pb-37.5">
+          <AmbientHeroBackground />
+          <TypedHeroHeading
+            text="E-commerce"
+            className="text-title-3xl md:text-title-5xl lg:text-title-6xl font-title text-center uppercase"
+          />
         </section>
       </SectionFirstReveal>
       <SectionFirstReveal>

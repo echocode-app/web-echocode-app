@@ -14,8 +14,9 @@ import challenges from '@/data/projects/challenges/food.json';
 import planning from '@/data/projects/planning/food.json';
 import features from '@/data/projects/features/food.json';
 import technologies from '@/data/projects/technologies/food.json';
-import HeroBackground from '@/components/UI/HeroBackground';
+import AmbientHeroBackground from '@/components/UI/hero-background/AmbientHeroBackground';
 import SectionFirstReveal from '@/components/UI/section/SectionFirstReveal';
+import TypedHeroHeading from '@/components/UI/TypedHeroHeading';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = buildPageMetadata({
@@ -30,12 +31,13 @@ export const metadata: Metadata = buildPageMetadata({
 const Food = () => {
   return (
     <>
-      <HeroBackground />
       <SectionFirstReveal>
-        <section className="pt-42 pb-37.5">
-          <h1 className="text-title-3xl md:text-title-5xl lg:text-title-6xl font-title text-center">
-            FOOD ＆ DRINK
-          </h1>
+        <section className="relative overflow-hidden pt-42 pb-37.5">
+          <AmbientHeroBackground />
+          <TypedHeroHeading
+            text="FOOD ＆ DRINK"
+            className="text-title-3xl md:text-title-5xl lg:text-title-6xl font-title text-center"
+          />
         </section>
       </SectionFirstReveal>
       <SectionFirstReveal>

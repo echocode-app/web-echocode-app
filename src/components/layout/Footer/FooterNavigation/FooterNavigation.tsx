@@ -2,6 +2,7 @@ import FooterNavLink from './FooterNavLink';
 import FooterSocialLink from './FooterSocialLink';
 import EmailLink from '../EmailLink';
 import SocailLinks from './SocialLinks';
+
 import FooterLogo from './FooterLogo';
 
 const FooterNavigation = () => (
@@ -47,10 +48,14 @@ const FooterNavigation = () => (
           </h3>
           <ul className="flex flex-col gap-1 sm:w-34 xl:w-34">
             <li>
-              <FooterSocialLink link="http://linkedin.com/company/echocode">LinkedIn</FooterSocialLink>
+              <FooterSocialLink link="http://linkedin.com/company/echocode">
+                LinkedIn
+              </FooterSocialLink>
             </li>
             <li>
-              <FooterSocialLink link="http://instagram.com/echocode.app">Instagram</FooterSocialLink>
+              <FooterSocialLink link="http://instagram.com/echocode.app">
+                Instagram
+              </FooterSocialLink>
             </li>
             <li>
               <FooterSocialLink link="https://t.me/echocode_app">Telegram</FooterSocialLink>

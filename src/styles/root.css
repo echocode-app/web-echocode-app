@@ -128,7 +128,6 @@
 }
 
 @layer utilities {
-
   .font-title {
     font-family: var(--font-wadik), sans-serif;
   }

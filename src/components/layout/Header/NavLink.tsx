@@ -10,7 +10,9 @@ export const navLinkHoverEffectClass =
   'hover:text-transparent hover:bg-clip-text ' +
   'after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-[-2px] after:h-px after:w-full ' +
   'after:bg-main-gradient after:opacity-0 after:transition-opacity ' +
-  'after:duration-main hover:after:opacity-100';
+  'after:duration-main hover:after:opacity-100 ' +
+  '[&::after]:animate-[section-gradient-drift_5s_ease-in-out_infinite] after:bg-size-[200%_200%] ' +
+  'animate-[section-gradient-drift_5s_ease-in-out_infinite] bg-size-[200%_200%] ';
 
 export const navLinkBaseClass =
   'relative font-main uppercase text-main-sm font-semibold lg:text-main-base-link ' +
@@ -21,7 +23,9 @@ const navLinkActiveClass =
   'relative font-main uppercase text-main-sm font-semibold lg:text-main-base-link ' +
   'text-transparent bg-main-gradient bg-clip-text ' +
   'after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-[-2px] ' +
-  'after:h-px after:w-full after:bg-main-gradient after:opacity-100';
+  'after:h-px after:w-full after:bg-main-gradient after:opacity-100 ' +
+  '[&::after]:animate-[section-gradient-drift_5s_ease-in-out_infinite] after:bg-size-[200%_200%] ' +
+  'animate-[section-gradient-drift_5s_ease-in-out_infinite] bg-size-[200%_200%] ';
 
 interface NavLinkProps {
   children: ReactNode;

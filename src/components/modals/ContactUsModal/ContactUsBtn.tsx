@@ -22,10 +22,10 @@ const ContactUsBtn = () => {
   before:transition-opacity before:duration-300
   before:z-0
   hover:before:opacity-100
+  [&::before]:animate-[section-gradient-drift_5s_ease-in-out_infinite] before:bg-size-[200%_200%]
   "
     >
       <span className="block relative z-10 font-title text-title-base">Contact us</span>
-
       <div
         className="
     relative z-10
@@ -34,7 +34,13 @@ const ContactUsBtn = () => {
     "
       >
         <div className="relative w-6.5 h-5.5">
-          <Image src="/UI/contact.svg" alt="Contact Us" width={26} height={22} className="w-6.5 h-5.5" />
+          <Image
+            src="/UI/contact.svg"
+            alt="Contact Us"
+            width={26}
+            height={22}
+            className="w-6.5 h-5.5"
+          />
         </div>
       </div>
     </Link>

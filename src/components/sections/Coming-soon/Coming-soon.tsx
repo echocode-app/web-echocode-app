@@ -42,7 +42,7 @@ const ComingSoon = () => {
               md:group-hover:text-white
             "
           >
-            Coming Soon
+            Echocode Digital
           </span>
 
           <span

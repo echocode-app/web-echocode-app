@@ -1,101 +1,87 @@
 # web-echocode-app
 
-Reskin of the Echocode website built with **Next.js**.
-Production domain: [https://echocode.app/](https://echocode.app/)
+[Українська версія](./README.uk.md)
 
----
+Static production site: [https://www.echocode.app/](https://www.echocode.app/)  
+Dynamic Next.js preview: [https://web-echocode-app.vercel.app/](https://web-echocode-app.vercel.app/)
 
-## Live Environments
+## Project context
 
-### 1️⃣ Static Export (SSG-only)
+This repository contains two aligned delivery modes for the same Echocode website:
 
-GitHub Pages deployment from `main` branch:
+- `main` is the static hosting branch for Namecheap.
+- `vercel-experiment` is the dynamic Next.js branch for Vercel.
 
-[https://echocode-app.github.io/web-echocode-app/](https://echocode-app.github.io/web-echocode-app/)
+The UI and product behavior should stay aligned between both branches.  
+The difference is the runtime model:
 
-* `next build`
-* `next export`
-* Fully static (no server runtime)
-* Suitable for preview / static hosting
+- `main` is kept compatible with static export and manual hosting upload.
+- `vercel-experiment` is kept compatible with standard Next.js runtime behavior on Vercel.
 
----
+## Live environments
 
-### 2️⃣ Dynamic Deployment (SSR)
+- Static production: [https://www.echocode.app/](https://www.echocode.app/)
+  This is the Namecheap-hosted version built from the static branch flow.
+- Dynamic preview: [https://web-echocode-app.vercel.app/](https://web-echocode-app.vercel.app/)
+  This is the Vercel deployment for the dynamic Next.js environment.
 
-Vercel deployment from `vercel-experiment` branch:
+## Quick setup
 
-[https://web-echocode-app.vercel.app/](https://web-echocode-app.vercel.app/)
+- Node `20.x`
+- npm `10+`
 
-* Full **Next.js SSR**
-* Supports dynamic routes
-* Server-side rendering
-* API routes (if enabled)
-* Recommended environment for production-like behavior
+## Main commands
 
----
+- `npm run dev` - start the local Next.js app
+- `npm run lint` - run ESLint validation
+- `npm run typecheck` - run TypeScript validation
+- `npm run build` - create the production build for the current branch mode
+- `npm run check` - required validation before merge or manual deploy (`lint + typecheck + build`)
 
-## Tech Stack
+## Branch roles
 
-* **Next.js**
-* React
-* TypeScript
-* TailwindCSS
-* App Router architecture
-* Static Export (SSG) support
-* SSR-ready configuration
+### `main`
 
----
+- Static branch for Namecheap hosting
+- Must remain compatible with static export behavior
+- Live domain: [https://www.echocode.app/](https://www.echocode.app/)
+- No automatic deploy is configured
+- Deployment is manual: build the static output and upload it to hosting by hand
 
-## 🌍 Production Domain
+### `vercel-experiment`
 
-Main domain:
+- Dynamic Next.js branch for Vercel
+- Keeps the natural Next.js runtime model
+- Preview URL: [https://web-echocode-app.vercel.app/](https://web-echocode-app.vercel.app/)
+- Useful for validating behavior that should run in a standard Next.js environment
 
-[https://echocode.app/](https://echocode.app/)
+## Deployment notes
 
-Production runs on Vercel infrastructure with full SSR support.
+### Namecheap / static hosting
 
----
+- Use `main` for the static hosting flow
+- Build with the production `NEXT_PUBLIC_*` environment variables
+- Upload the generated static build to hosting manually
+- Automatic deploy to Namecheap is not configured
 
-## 🚀 Branch Strategy
+### Vercel / dynamic hosting
 
-| Branch              | Purpose                                         |
-| ------------------- | ----------------------------------------------- |
-| `main`              | Static export build for GitHub Pages (SSG-only) |
-| `vercel-experiment` | Dynamic SSR build for Vercel deployment         |
+- Use `vercel-experiment`
+- Deploy through the standard Next.js/Vercel runtime
+- Keep runtime-specific behavior here if it should not affect the static branch
 
----
+## Working rule for both branches
 
-## Local Development
+- Visual output should stay consistent between `main` and `vercel-experiment`
+- Functional behavior should stay consistent unless the hosting model requires a branch-specific implementation detail
+- Static-only compromises belong in `main`
+- Dynamic-only runtime behavior belongs in `vercel-experiment`
 
-```bash
-npm install
-npm run dev
-```
+## Pre-merge checklist
 
-Build:
-
-```bash
-npm run build
-```
-
-Static export:
-
-```bash
-npm run build
-npm run export
-```
-
----
-
-## 📌 Notes
-
-* `main` branch must remain compatible with static export.
-* Dynamic features should be tested in `vercel-experiment`.
-* SSR-only logic should not break static build compatibility unless explicitly intended.
-
----
-
-## Analytics Integration Docs
-
-- English: [docs/analytics-echocode-app.en.md](/Users/annakotlyar/Desktop/projects/web-echocode-app/docs/analytics-echocode-app.en.md)
-- Ukrainian: [docs/analytics-echocode-app.uk.md](/Users/annakotlyar/Desktop/projects/web-echocode-app/docs/analytics-echocode-app.uk.md)
+1. `git pull`
+2. Install dependencies if needed
+3. Make the change
+4. If `package.json` changed, update `package-lock.json`
+5. Run `npm run check`
+6. Review branch-specific implications for static vs dynamic hosting

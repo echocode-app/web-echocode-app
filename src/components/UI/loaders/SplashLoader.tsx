@@ -20,16 +20,24 @@ const SplashLoader = ({ children }: SplashLoaderProps) => {
       <div
         aria-hidden="true"
         role="presentation"
-        className={['splash-loader', isOverlayVisible ? 'is-visible' : ''].filter(Boolean).join(' ')}
+        className={['splash-loader', isOverlayVisible ? 'is-visible' : '']
+          .filter(Boolean)
+          .join(' ')}
       >
         <img
           src={splashLogoSrc}
           alt="Echocode"
-          className={['splash-logo', shouldAnimateLogo ? 'is-animating' : ''].filter(Boolean).join(' ')}
+          className={['splash-logo', shouldAnimateLogo ? 'is-animating' : '']
+            .filter(Boolean)
+            .join(' ')}
         />
       </div>
 
-      <div className={['splash-loader-content', isContentVisible ? 'is-visible' : 'is-hidden'].join(' ')}>
+      <div
+        className={['splash-loader-content', isContentVisible ? 'is-visible' : 'is-hidden'].join(
+          ' ',
+        )}
+      >
         {children}
       </div>
     </>

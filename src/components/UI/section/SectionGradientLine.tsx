@@ -1,12 +1,18 @@
 interface SectionGradientLineProps {
   height: string;
+  container?: 'section' | 'project';
 }
 
-const SectionGradientLine = ({ height }: SectionGradientLineProps) => {
+const CONTAINER_CLASS_NAMES = {
+  section: 'mx-auto px-4 max-w-316 md:px-8',
+  project: 'mx-auto px-4 max-w-266 md:px-8',
+} as const;
+
+const SectionGradientLine = ({ height, container = 'section' }: SectionGradientLineProps) => {
   return (
-    <div className="md:px-8 mb-6">
+    <div className={`${CONTAINER_CLASS_NAMES[container]} mb-6`}>
       <div
-        className={`bg-main-gradient w-full max-w-300 mx-auto`}
+        className="bg-section-gradient-animated w-full mx-auto"
         style={{ height: `${height}px` }}
       />
     </div>

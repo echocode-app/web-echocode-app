@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react';
 
 import { projectSubmissionSchema } from '@/shared/validation';
-import { FORM_SUBMIT_URL, SITE_ID } from '@/lib/siteIngest';
+import { FORM_SUBMIT_URL } from '@/lib/siteIngest';
+import { getClientSiteConfig } from '@/lib/site/clientSiteContext';
 
 import {
   initAttachmentUpload,
@@ -193,10 +194,12 @@ export const useContactUsForm = ({
         attachmentPayload = await initAttachmentUpload(normalized.attachment);
       }
 
+      const siteConfig = getClientSiteConfig();
       const payload = {
         formType: 'project' as const,
-        siteId: SITE_ID,
-        source: SITE_ID,
+        siteId: siteConfig.siteId,
+        siteHost: siteConfig.siteHost,
+        source: siteConfig.defaultFormSource,
         firstName: normalized.firstName,
         lastName: normalized.lastName,
         email: normalized.email,

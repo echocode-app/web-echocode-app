@@ -15,7 +15,10 @@ const ExploreLink = () => {
                  font-title text-title-sm text-white rounded-base overflow-hidden duration-main shadow-main "
     >
       <div className="absolute inset-0 bg-accent transition-opacity duration-main" />
-      <div className="absolute inset-0 bg-main-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-main" />
+      <div
+        className="absolute inset-0 bg-main-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-main 
+      animate-[section-gradient-drift_5s_ease-in-out_infinite] bg-size-[200%_200%]"
+      />
       <div className="absolute inset-0.5 bg-black rounded-[calc(var(--radius-base)-2px)] z-0" />
       <span className="relative z-10 group-hover:text-accent duration-main">Explore more</span>
       <div className="relative z-10">

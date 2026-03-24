@@ -27,12 +27,19 @@ const YourNeedsInput = ({ value, error, disabled, onBlur, onChange }: YourNeedsI
         aria-label="About your needs"
         title="About your needs"
         aria-invalid={error ? 'true' : 'false'}
-        className="block no-autofill-bg pt-6.5 pb-2 pl-4 pr-6 border rounded-secondary 
-        leading-3.5 w-full 
-        hover:border-accent focus:border-accent duration-main transition-colors 
-        outline-0 text-main-xs font-main text-white placeholder:text-primary-gray 
-        md:pt-7 md:pb-2.5
-        border-white disabled:opacity-70 disabled:cursor-not-allowed"
+        className="
+          block no-autofill-bg
+          w-full
+          pt-6.5 pb-2 pl-4 pr-6
+          md:pt-7 md:pb-2.5
+          border border-white rounded-secondary
+          leading-3.5
+          text-main-xs font-main text-white
+          placeholder:text-primary-gray
+          hover:border-accent focus:border-accent duration-main transition-colors
+          outline-0
+          disabled:opacity-70 disabled:cursor-not-allowed
+        "
       />
       <p
         className={`min-h-4 mt-1 ml-2 lg:ml-4 text-main-xs leading-4 transition-opacity ${

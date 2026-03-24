@@ -1,5 +1,5 @@
 import ContactButton from '@/components/UI/buttons/ContactButton';
-import Image from 'next/image';
+import Image from '@/components/UI/AppImage';
 
 const ContactCTA = () => {
   return (

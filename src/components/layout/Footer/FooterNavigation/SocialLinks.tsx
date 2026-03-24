@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '@/components/UI/AppImage';
 import Link from 'next/link';
 
 const SocailLinks = () => {
@@ -7,7 +7,8 @@ const SocailLinks = () => {
       <li>
         <Link
           href={'https://t.me/echocode_app'}
-          target="blank"
+          target="_blank"
+          rel="noreferrer"
           className="flex justify-center items-center w-10 h-10 bg-base-gray rounded-full
           hover:bg-accent duration-main"
         >
@@ -19,7 +20,8 @@ const SocailLinks = () => {
       <li>
         <Link
           href={'http://instagram.com/echocode.app'}
-          target="blank"
+          target="_blank"
+          rel="noreferrer"
           className="flex justify-center items-center w-10 h-10 bg-base-gray rounded-full
           hover:bg-accent duration-main"
         >

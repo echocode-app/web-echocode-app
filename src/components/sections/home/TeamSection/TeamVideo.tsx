@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import VideoLoader from '@/components/UI/loaders/VideoLoader';
+import { withBasePath } from '@/shared/url/withBasePath';
 
 const TeamVideo = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -64,12 +65,12 @@ const TeamVideo = () => {
           muted
           playsInline
           disablePictureInPicture
-          preload="auto"
+          preload="metadata"
           onLoadedData={() => setLoaded(true)}
           className={`w-full h-full object-cover transition-opacity duration-main 
            ${loaded ? 'opacity-100' : 'opacity-0'}`}
         >
-          <source src="/videos/video-team.mp4" type="video/mp4" />
+          <source src={withBasePath('/videos/video-team.mp4')} type="video/mp4" />
         </video>
       )}
     </div>

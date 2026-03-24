@@ -18,20 +18,22 @@ const ContactButton = ({ children, href, onClick, className }: Props) => {
     `
     group relative z-0 inline-flex items-center rounded-full
     pl-6 h-14 overflow-hidden
-    [background:var(--background-image-cta-default)]
+    bg-[linear-gradient(90deg,#ff0a65_0%,#fd266c_100%)]
     shadow-[var(--shadow-cta)]
     transform-gpu origin-center will-change-transform [backface-visibility:hidden]
     [transform:translateZ(0)_scale(1)]
     [transition:transform_620ms_cubic-bezier(0.16,1,0.3,1),box-shadow_620ms_cubic-bezier(0.16,1,0.3,1)]
+    before:content-['']
     before:absolute before:inset-0
-    before:[background:var(--background-image-cta-hover)]
+    before:bg-[linear-gradient(270deg,#fac175_0%,#fe266c_51.35%,#8b5cf5_100%)]
     before:opacity-0 before:transition-opacity before:duration-800 before:ease-[cubic-bezier(0.4,0,0.2,1)]
     before:z-0
     hover:before:opacity-100 hover:shadow-[var(--shadow-cta-hover)] hover:[transform:translateZ(0)_scale(1.01)]
     focus-visible:before:opacity-100 focus-visible:shadow-[var(--shadow-cta-hover)] focus-visible:[transform:translateZ(0)_scale(1.01)]
-    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 
+    [&::before]:animate-[section-gradient-drift_5s_ease-in-out_infinite] before:bg-size-[200%_200%]
     `,
-    className
+    className,
   );
   if (href) {
     const resolvedHref = href.startsWith('/contact') ? contactHref : href;

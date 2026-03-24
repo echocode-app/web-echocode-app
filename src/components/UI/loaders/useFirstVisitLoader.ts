@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 const SESSION_KEY = 'echocode:splash:lastSeen';
+const HERO_TYPED_KEY = 'echocode:hero:typed';
 const SESSION_TIMEOUT_MS = 45 * 60 * 1000;
 const LOGO_ANIMATION_MS = 3000;
 const LOGO_ANIMATION_MS_REDUCED = 200;
@@ -51,6 +52,7 @@ export const useFirstVisitLoader = () => {
 
     try {
       sessionStorage.setItem(SESSION_KEY, String(now));
+      sessionStorage.removeItem(HERO_TYPED_KEY);
     } catch {}
 
     const logoDuration = prefersReducedMotion ? LOGO_ANIMATION_MS_REDUCED : LOGO_ANIMATION_MS;

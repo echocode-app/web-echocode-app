@@ -5,48 +5,28 @@ import '@/styles/splash-loader.css';
 
 import './globals.css';
 import Header from '@/components/layout/Header';
+import PageTransition from '@/components/layout/PageTransition';
 import Footer from '@/components/layout/Footer';
+import ContactUsModal from '@/components/modals/ContactUsModal';
 import SplashLoader from '@/components/UI/loaders/SplashLoader';
 import PageViewTracker from '@/components/analytics/PageViewTracker';
+import { withBasePath } from '@/shared/url/withBasePath';
 import { ReactNode } from 'react';
+import { SEO_BASE_URL } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://echocode.app'),
+  metadataBase: new URL(SEO_BASE_URL),
   title: 'Echocode.app',
-  description:
-    'Echocode is a software development company specializing in iOS, Android, Flutter, Web and iGaming solutions.',
+  description: 'Echocode',
   icons: {
     icon: [
-      { url: '/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
-      { url: '/favicon/favicon.svg', type: 'image/svg+xml' },
+      { url: withBasePath('/favicon/favicon-96x96.png'), sizes: '96x96', type: 'image/png' },
+      { url: withBasePath('/favicon/favicon.svg'), type: 'image/svg+xml' },
     ],
-    shortcut: '/favicon/favicon.ico',
-    apple: [{ url: '/favicon/apple-touch-icon.png', sizes: '180x180' }],
+    shortcut: withBasePath('/favicon/favicon.ico'),
+    apple: [{ url: withBasePath('/favicon/apple-touch-icon.png'), sizes: '180x180' }],
   },
-  manifest: '/favicon/site.webmanifest',
-  openGraph: {
-    title: 'Echocode.app',
-    description:
-      'Custom mobile and web development solutions: iOS, Android, Flutter and iGaming. Design, QA and product management services.',
-    url: 'https://echocode.app/',
-    siteName: 'Echocode.app',
-    images: [
-      {
-        url: '/images/fulllogo.png',
-        width: 1280,
-        height: 836,
-        alt: 'Echocode.app',
-      },
-    ],
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Echocode.app',
-    description:
-      'Mobile & web development company. iOS, Android, Flutter and iGaming solutions.',
-    images: ['/images/fulllogo.png'],
-  },
+  manifest: withBasePath('/favicon/site.webmanifest'),
 };
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
@@ -69,10 +49,8 @@ const splashInitScript = `(() => {
 
 export default function RootLayout({
   children,
-  modal,
 }: Readonly<{
   children: ReactNode;
-  modal?: ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -81,13 +59,15 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: splashInitScript }} />
       </head>
       <body
-        className={`${poppins.variable} ${inter.variable} ${wadik.variable} ${workSans.variable} antialiased relative`}
+        className={`${poppins.variable} ${inter.variable} ${wadik.variable} ${workSans.variable} antialiased relative `}
       >
         <PageViewTracker />
         <SplashLoader>
           <Header />
-          <main>{children}</main>
-          {modal}
+          <main>
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <ContactUsModal />
           <Footer />
         </SplashLoader>
       </body>

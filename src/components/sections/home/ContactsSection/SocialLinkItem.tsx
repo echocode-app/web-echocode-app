@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '@/components/UI/AppImage';
 import Link from 'next/link';
 
 interface SocialLinkItemProps {
@@ -13,7 +13,8 @@ const SocialLinkItem = ({ image, title, link, width }: SocialLinkItemProps) => {
     <li>
       <Link
         href={link}
-        target="blank"
+        target="_blank"
+        rel="noreferrer"
         className="group flex items-center gap-3 px-3 py-2 border-l border-accent "
       >
         <div

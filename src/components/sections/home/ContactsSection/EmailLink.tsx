@@ -1,11 +1,12 @@
-import Image from 'next/image';
+import Image from '@/components/UI/AppImage';
 import Link from 'next/link';
 
 const EmailLink = () => {
   return (
     <Link
       href={'mailto:hello@echocode.app'}
-      target="blank"
+      target="_blank"
+      rel="noreferrer"
       className="group flex items-center gap-3 px-3 py-2 border-l border-accent"
     >
       <div

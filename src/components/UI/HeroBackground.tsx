@@ -1,4 +1,5 @@
 import Image from '@/components/UI/AppImage';
+import { withBasePath } from '@/shared/url/withBasePath';
 
 const HeroBackground = () => {
   return (
@@ -9,7 +10,7 @@ const HeroBackground = () => {
     >
       <div className="relative w-full h-full ">
         <Image
-          src={'/UI/backgrounds/hero-bg.png'}
+          src={withBasePath('/UI/backgrounds/hero-bg.png')}
           alt="bg"
           priority
           fill

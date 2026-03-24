@@ -1,44 +1,57 @@
-"use client";
+'use client';
 
-import { ReactNode } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { ReactNode } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export const navLinkHoverEffectClass =
-  "transition-all duration-main " +
-  "group-hover:text-transparent group-hover:bg-clip-text group-hover:after:opacity-100 " +
-  "hover:text-transparent hover:bg-clip-text " +
-  "after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-[-2px] after:h-px after:w-full " +
-  "after:bg-main-gradient after:opacity-0 after:transition-opacity " +
-  "after:duration-main hover:after:opacity-100";
+  'transition-all duration-main ' +
+  'group-hover:text-transparent group-hover:bg-clip-text group-hover:after:opacity-100 ' +
+  'hover:text-transparent hover:bg-clip-text ' +
+  'after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-[-2px] after:h-px after:w-full ' +
+  'after:bg-main-gradient after:opacity-0 after:transition-opacity ' +
+  'after:duration-main hover:after:opacity-100 ' +
+  '[&::after]:animate-[section-gradient-drift_5s_ease-in-out_infinite] after:bg-size-[200%_200%] ' +
+  'animate-[section-gradient-drift_5s_ease-in-out_infinite] bg-size-[200%_200%] ';
 
 export const navLinkBaseClass =
-  "relative font-main uppercase text-main-sm font-semibold lg:text-main-base-link " +
-  "bg-main-gradient bg-clip-text bg-transparent " +
+  'relative font-main uppercase text-main-sm font-semibold lg:text-main-base-link ' +
+  'bg-main-gradient bg-clip-text bg-transparent ' +
   navLinkHoverEffectClass;
 
-const navLinkActiveClass = "text-transparent bg-transparent after:opacity-100";
+const navLinkActiveClass =
+  'relative font-main uppercase text-main-sm font-semibold lg:text-main-base-link ' +
+  'text-transparent bg-main-gradient bg-clip-text ' +
+  'after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-[-2px] ' +
+  'after:h-px after:w-full after:bg-main-gradient after:opacity-100 ' +
+  '[&::after]:animate-[section-gradient-drift_5s_ease-in-out_infinite] after:bg-size-[200%_200%] ' +
+  'animate-[section-gradient-drift_5s_ease-in-out_infinite] bg-size-[200%_200%] ';
 
 interface NavLinkProps {
   children: ReactNode;
   link: string;
 }
 
+const normalizePath = (value: string) => {
+  if (!value || value === '/') {
+    return '/';
+  }
+
+  return value.endsWith('/') ? value.slice(0, -1) : value;
+};
+
 const NavLink = ({ children, link }: NavLinkProps) => {
   const pathname = usePathname();
-  const isActive = pathname === link || pathname.startsWith(link + "/");
+  const isHashLink = link.includes('#');
+  const normalizedPathname = normalizePath(pathname || '/');
+  const normalizedLink = normalizePath(link.split('#')[0] || '/');
+  const isPortfolioRoute =
+    normalizedPathname === '/portfolio' || normalizedPathname.startsWith('/portfolio/');
+  const isActive = isPortfolioRoute && !isHashLink && normalizedPathname === normalizedLink;
 
   return (
-    <Link
-      href={link}
-      data-text={children}
-      className="block relative group lg:px-5 lg:py-2.5"
-    >
-      <p
-        className={`${isActive ? navLinkActiveClass : ""} ${navLinkBaseClass}`}
-      >
-        {children}
-      </p>
+    <Link href={link} data-text={children} className="block relative group lg:px-5 lg:py-2.5">
+      <p className={isActive ? navLinkActiveClass : navLinkBaseClass}>{children}</p>
     </Link>
   );
 };

@@ -23,6 +23,7 @@ const ComingSoon = () => {
 
   return (
     <section className="w-full pt-33">
+      <h2 className="sr-only">New website announcement</h2>
       <Link
         href="https://www.echocode.digital/"
         target="_blank"
@@ -41,7 +42,7 @@ const ComingSoon = () => {
               md:group-hover:text-white
             "
           >
-            Coming Soon
+            Echocode Digital
           </span>
 
           <span

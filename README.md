@@ -92,3 +92,10 @@ npm run export
 * `main` branch must remain compatible with static export.
 * Dynamic features should be tested in `vercel-experiment`.
 * SSR-only logic should not break static build compatibility unless explicitly intended.
+
+---
+
+## Analytics Integration Docs
+
+- English: [docs/analytics-echocode-app.en.md](/Users/annakotlyar/Desktop/projects/web-echocode-app/docs/analytics-echocode-app.en.md)
+- Ukrainian: [docs/analytics-echocode-app.uk.md](/Users/annakotlyar/Desktop/projects/web-echocode-app/docs/analytics-echocode-app.uk.md)

@@ -5,13 +5,17 @@ import '@/styles/splash-loader.css';
 
 import './globals.css';
 import Header from '@/components/layout/Header';
+import PageTransition from '@/components/layout/PageTransition';
 import Footer from '@/components/layout/Footer';
 import ContactUsModal from '@/components/modals/ContactUsModal';
 import SplashLoader from '@/components/UI/loaders/SplashLoader';
+import PageViewTracker from '@/components/analytics/PageViewTracker';
 import { withBasePath } from '@/shared/url/withBasePath';
 import { ReactNode } from 'react';
+import { SEO_BASE_URL } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SEO_BASE_URL),
   title: 'Echocode.app',
   description: 'Echocode',
   icons: {
@@ -55,11 +59,14 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: splashInitScript }} />
       </head>
       <body
-        className={`${poppins.variable} ${inter.variable} ${wadik.variable} ${workSans.variable} antialiased relative`}
+        className={`${poppins.variable} ${inter.variable} ${wadik.variable} ${workSans.variable} antialiased relative `}
       >
+        <PageViewTracker />
         <SplashLoader>
           <Header />
-          <main>{children}</main>
+          <main>
+            <PageTransition>{children}</PageTransition>
+          </main>
           <ContactUsModal />
           <Footer />
         </SplashLoader>

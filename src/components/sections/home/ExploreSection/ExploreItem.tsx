@@ -11,13 +11,13 @@ const ExploreItem = ({ children, width }: ExploreItemProps) => {
   };
 
   return (
-    <li
+    <div
       className="p-4 font-title text-title-sm md:text-title-base border-l
        border-accent w-full rounded-secondary bg-[#121212] shrink-0 md:max-w-(--w)"
       style={style}
     >
       {children}
-    </li>
+    </div>
   );
 };
 

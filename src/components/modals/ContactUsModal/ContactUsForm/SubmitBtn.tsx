@@ -12,19 +12,18 @@ const SubmitBtn = ({ isPending, isSuccess }: SubmitBtnProps) => {
       <button
         type="submit"
         disabled={isDisabled}
-        className={`relative block w-full py-3 md:py-4 font-title text-white text-title-base rounded-secondary shadow-button overflow-hidden
+        className={`relative block w-full py-3 md:py-4 font-title text-white text-title-base rounded-secondary shadow-button overflow-hidden 
           transition-[color,background-color,box-shadow,opacity,transform] duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70
           ${
             isSuccess
               ? 'bg-success cursor-default'
               : 'bg-main-gradient cursor-pointer before:absolute before:inset-0 before:bg-accent before:opacity-0 before:transition-opacity before:duration-500 before:ease-out hover:before:opacity-100 hover:shadow-main focus-visible:shadow-main'
-          } disabled:opacity-100`}
+          } disabled:opacity-100 animate-[section-gradient-drift_5s_ease-in-out_infinite] bg-size-[200%_200%]`}
       >
         <span className="relative z-10 block h-6">
           <span
-            className={`absolute inset-0 flex items-center justify-center transition-all duration-main ease-out ${
-              baseText ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1'
-            }`}
+            className={`absolute inset-0 flex items-center justify-center transition-all duration-main ease-out 
+               ${baseText ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1'}`}
           >
             Send message
           </span>

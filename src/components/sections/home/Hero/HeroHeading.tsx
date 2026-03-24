@@ -27,7 +27,9 @@ const HeroHeading = () => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     setIsReducedMotion(media.matches);
 
-    const navigationEntry = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
+    const navigationEntry = performance.getEntriesByType('navigation')[0] as
+      | PerformanceNavigationTiming
+      | undefined;
     const isReload = navigationEntry?.type === 'reload';
     const currentLoadId = String(performance.timeOrigin);
 
@@ -106,8 +108,10 @@ const HeroHeading = () => {
 
   return (
     <div className="relative text-center">
-      <h1 className={`${headingClasses} text-transparent select-none`}>{FULL_TEXT}</h1>
-      <h1 className={`${headingClasses} absolute inset-0 text-white`}>
+      <div aria-hidden="true" className={`${headingClasses} text-transparent select-none`}>
+        {FULL_TEXT}
+      </div>
+      <h1 className={`${headingClasses} absolute inset-0 text-white`} aria-label={FULL_TEXT}>
         {displayedText}
 
         {!isReducedMotion && !isFinished && (

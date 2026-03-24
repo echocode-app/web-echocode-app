@@ -1,5 +1,6 @@
 'use client';
 
+import ContactFile from './ContactFile';
 import ContactInput from './ContactInput';
 import SubmitButton from './SubmitBtn';
 import YourNeedsInput from './YourNeedInput';
@@ -11,15 +12,24 @@ type ContactUsFormProps = {
 };
 
 const ContactUsForm = ({ isSuccessRoute = false, onSuccessSubmit }: ContactUsFormProps) => {
-  const { values, errors, isPending, isSuccess, isFormLocked, onSubmit, onChangeField, onBlurField } =
-    useContactUsForm({
-      isSuccessRoute,
-      onSuccessSubmit,
-    });
+  const {
+    values,
+    errors,
+    isPending,
+    isSuccess,
+    isFormLocked,
+    onSubmit,
+    onChangeField,
+    onChangeAttachment,
+    onBlurField,
+  } = useContactUsForm({
+    isSuccessRoute,
+    onSuccessSubmit,
+  });
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="flex flex-col md:flex-row gap-3 md:gap-4 mb-1 sm:mb-2 md:mb-3">
+      <div className="flex flex-col md:flex-row gap-1 md:gap-4 mb-2 md:mb-4">
         <ContactInput
           name="firstName"
           label="First name*"
@@ -43,7 +53,7 @@ const ContactUsForm = ({ isSuccessRoute = false, onSuccessSubmit }: ContactUsFor
           onChange={(value) => onChangeField('lastName', value)}
         />
       </div>
-      <div className="mb-1 sm:mb-2 md:mb-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-4 mb-2 md:mb-4">
         <ContactInput
           name="email"
           label="Email*"
@@ -56,8 +66,15 @@ const ContactUsForm = ({ isSuccessRoute = false, onSuccessSubmit }: ContactUsFor
           onBlur={() => onBlurField('email')}
           onChange={(value) => onChangeField('email', value)}
         />
+        <ContactFile
+          file={values.attachment}
+          error={errors.attachment}
+          disabled={isFormLocked}
+          onBlur={() => onBlurField('attachment')}
+          onChange={onChangeAttachment}
+        />
       </div>
-      <div className="mb-1 sm:mb-2 md:mb-3">
+      <div className="mb-2 md:mb-4">
         <YourNeedsInput
           value={values.message}
           disabled={isFormLocked}
@@ -67,11 +84,15 @@ const ContactUsForm = ({ isSuccessRoute = false, onSuccessSubmit }: ContactUsFor
         />
       </div>
 
-      {errors.form ? (
-        <div className="mb-2 sm:mb-3" aria-live="polite">
-          <p className="text-main-xs text-[#ff8d8d]">{errors.form}</p>
-        </div>
-      ) : null}
+      <div className="min-h-5 mb-1" aria-live="polite">
+        <p
+          className={`text-main-xs text-[#ff8d8d] transition-opacity duration-main ${
+            errors.form ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          {errors.form ?? ' '}
+        </p>
+      </div>
 
       <SubmitButton isPending={isPending} isSuccess={isSuccess} />
       {isSuccess ? (

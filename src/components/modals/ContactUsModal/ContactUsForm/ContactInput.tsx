@@ -32,8 +32,8 @@ export default function ContactInput({
         <span
           aria-hidden="true"
           className="
-            pointer-events-none absolute top-0 left-0 h-11.5 px-4
-            flex items-center text-white text-[10px] leading-none font-title
+            pointer-events-none h-11.5 md:h-12.5
+            absolute p-4 flex items-center text-white text-[10px] leading-none font-title
           "
         >
           {label}
@@ -53,7 +53,8 @@ export default function ContactInput({
         aria-describedby={`${name}-error`}
         aria-invalid={error ? true : undefined}
         className="
-          w-full h-11.5
+          no-autofill-bg
+          w-full h-11.5 md:h-12.5
           p-4
            hover:border-accent focus:border-accent duration-main transition-colors
           border border-white rounded-secondary
@@ -65,7 +66,7 @@ export default function ContactInput({
       />
       <p
         id={`${name}-error`}
-        className={`min-h-4 mt-1 md:mt-2 ml-2 lg:ml-4 text-main-xs leading-4 transition-opacity ${error ? 'text-[#d96e6e] opacity-100' : 'opacity-0'}`}
+        className={`min-h-4 mt-1 ml-2 lg:ml-4 text-main-xs leading-4 transition-opacity ${error ? 'text-[#d96e6e] opacity-100' : 'opacity-0'}`}
       >
         {error || ' '}
       </p>

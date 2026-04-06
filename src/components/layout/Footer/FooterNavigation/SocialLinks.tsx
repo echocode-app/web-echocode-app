@@ -19,7 +19,7 @@ const SocailLinks = () => {
       </li>
       <li>
         <Link
-          href={'http://instagram.com/echocode.app'}
+          href={'https://www.instagram.com/echocode.digital'}
           target="_blank"
           rel="noreferrer"
           className="flex justify-center items-center w-10 h-10 bg-base-gray rounded-full

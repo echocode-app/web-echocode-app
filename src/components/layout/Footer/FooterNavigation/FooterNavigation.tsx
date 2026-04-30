@@ -53,7 +53,7 @@ const FooterNavigation = () => (
               </FooterSocialLink>
             </li>
             <li>
-              <FooterSocialLink link="http://instagram.com/echocode.digital">
+              <FooterSocialLink link="https://www.instagram.com/digital.echocode">
                 Instagram
               </FooterSocialLink>
             </li>

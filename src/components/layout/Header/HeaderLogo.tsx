@@ -23,7 +23,7 @@ const HeaderLogo = () => {
 
   return (
     <Link href="/" className="flex items-center gap-6 z-10" onClick={handleClick}>
-      <Logo /> <p className="font-title text-title-xs">echocode</p>
+      <Logo />
     </Link>
   );
 };

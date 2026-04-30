@@ -1,6 +1,7 @@
 interface SectionGradientLineProps {
   height: string;
   container?: 'section' | 'project';
+  fullWidth?: boolean;
 }
 
 const CONTAINER_CLASS_NAMES = {
@@ -8,7 +9,19 @@ const CONTAINER_CLASS_NAMES = {
   project: 'mx-auto px-4 max-w-266 md:px-8',
 } as const;
 
-const SectionGradientLine = ({ height, container = 'section' }: SectionGradientLineProps) => {
+const SectionGradientLine = ({
+  height,
+  container = 'section',
+  fullWidth = false,
+}: SectionGradientLineProps) => {
+  if (fullWidth) {
+    return (
+      <div className="mb-6">
+        <div className="bg-section-gradient-animated w-full" style={{ height: `${height}px` }} />
+      </div>
+    );
+  }
+
   return (
     <div className={`${CONTAINER_CLASS_NAMES[container]} mb-6`}>
       <div

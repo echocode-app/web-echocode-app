@@ -24,6 +24,9 @@ const FooterNavigation = () => (
             <li>
               <FooterNavLink link="/portfolio">Portfolio</FooterNavLink>
             </li>
+            <li>
+              <FooterNavLink link="/privacy-policy">Privacy Policy</FooterNavLink>
+            </li>
           </ul>
         </div>
         <div>
@@ -53,7 +56,7 @@ const FooterNavigation = () => (
               </FooterSocialLink>
             </li>
             <li>
-              <FooterSocialLink link="https://www.instagram.com/echocode.digital">
+              <FooterSocialLink link="https://www.instagram.com/digital.echocode">
                 Instagram
               </FooterSocialLink>
             </li>

@@ -13,13 +13,25 @@ const CITY_CENTER_LINKS = [
 
 const License = () => {
   const START_YEAR = 2024;
+  const CURRENT_YEAR = String(new Date().getFullYear());
 
   return (
-    <div className="flex flex-col md:flex-row md:justify-between font-extra text-[10px]">
-      <p className="mb-3 md:mb-0 text-center">
-        © <time dateTime={`${START_YEAR}`}>{START_YEAR}</time> ECHOCODE. ALL RIGHTS RESERVED.
+    <div className="flex justify-between items-center flex-col md:flex-row font-extra text-[10px] ">
+      <p className="flex-1 mb-2 md:mb-0 text-center md:text-start">
+        © <time dateTime={String(START_YEAR)}>{START_YEAR}</time>-
+        <time dateTime={CURRENT_YEAR}>{CURRENT_YEAR}</time> ECHOCODE. ALL RIGHTS RESERVED.
       </p>
-      <p className="flex items-center justify-center text-center">
+      <Link
+        href="/privacy-policy"
+        className="w-fit mx-auto mb-2 md:mb-0 uppercase underline text-center
+        transition-colors duration-main
+        hover:text-accent
+        focus-visible:text-accent
+        focus-visible:outline-none"
+      >
+        Privacy Policy
+      </Link>
+      <p className="flex-1 text-center md:text-end">
         {CITY_CENTER_LINKS.map(({ label, href }, index) => (
           <span key={label} className="inline-flex items-center">
             {index > 0 ? <span className="px-1">|</span> : null}

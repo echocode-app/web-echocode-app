@@ -6,6 +6,7 @@ export const dynamic = 'force-static';
 
 const STATIC_ROUTES = [
   '/',
+  '/privacy-policy/',
   '/portfolio/',
   '/portfolio/cleaning/',
   '/portfolio/e-commers/',

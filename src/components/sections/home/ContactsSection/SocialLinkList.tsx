@@ -11,7 +11,7 @@ const socialLinks = [
   {
     image: '/UI/social-icons/insta.svg',
     title: 'Instagram',
-    link: 'https://www.instagram.com/echocode.digital',
+    link: 'https://www.instagram.com/digital.echocode',
     width: '18',
   },
   {

@@ -11,13 +11,13 @@ const socialLinks = [
   {
     image: '/UI/social-icons/insta.svg',
     title: 'Instagram',
-    link: 'https://www.instagram.com/digital.echocode',
+    link: 'https://www.instagram.com/echocodeHQ',
     width: '18',
   },
   {
     image: '/UI/social-icons/telegram.svg',
     title: 'Telegram',
-    link: 'https://t.me/echocode_app',
+    link: 'https://t.me/echocodeHQ',
     width: '18',
   },
 ];

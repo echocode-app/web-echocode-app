@@ -56,12 +56,12 @@ const FooterNavigation = () => (
               </FooterSocialLink>
             </li>
             <li>
-              <FooterSocialLink link="https://www.instagram.com/digital.echocode">
+              <FooterSocialLink link="https://www.instagram.com/echocodeHQ">
                 Instagram
               </FooterSocialLink>
             </li>
             <li>
-              <FooterSocialLink link="https://t.me/echocode_app">Telegram</FooterSocialLink>
+              <FooterSocialLink link="https://t.me/echocodeHQ">Telegram</FooterSocialLink>
             </li>
           </ul>
         </div>

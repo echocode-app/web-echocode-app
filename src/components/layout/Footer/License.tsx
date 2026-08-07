@@ -3,11 +3,11 @@ import Link from 'next/link';
 const CITY_CENTER_LINKS = [
   {
     label: 'KYIV',
-    href: 'https://www.google.com/maps/search/?api=1&query=Kyiv+city+center',
+    href: 'https://www.google.com/maps/search/?api=1&query=Kyiv',
   },
   {
-    label: 'BERLIN',
-    href: 'https://www.google.com/maps/search/?api=1&query=Berlin+city+center',
+    label: 'ALICANTE',
+    href: 'https://www.google.com/maps/search/?api=1&query=Alicante',
   },
 ] as const;
 
